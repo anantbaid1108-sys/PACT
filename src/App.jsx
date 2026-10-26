@@ -164,9 +164,12 @@ export default function App() {
             >
               <Menu className="w-5 h-5" />
             </button>
-            <span className="font-extrabold text-sm text-white flex items-center gap-1">
-              PACT <span className="text-rose-500 font-bold text-xs">⚡</span>
-            </span>
+            <div className="flex items-center gap-1.5">
+              <img src="/pact-logo.png" alt="Pact Logo" className="w-7 h-7 object-contain drop-shadow" />
+              <span className="font-extrabold text-sm text-white tracking-wide">
+                PACT
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">

@@ -48,14 +48,20 @@ export default function Sidebar({
         {/* Header / Brand Logo */}
         <div className="h-16 px-5 border-b border-slate-800/80 flex items-center justify-between">
           <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => onSelectChannel('deck')}>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-rose-500 via-amber-500 to-emerald-400 p-[1.5px] shadow-lg shadow-rose-500/20">
-              <div className="w-full h-full bg-[#090C15] rounded-[10px] flex items-center justify-center">
-                <Zap className="w-5 h-5 text-amber-400 fill-amber-400" />
-              </div>
+            <div className="relative group">
+              <img 
+                src="/pact-logo.png" 
+                alt="Pact Logo" 
+                className="w-10 h-10 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-200"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-slate-900" />
             </div>
             <div>
-              <span className="text-lg font-black tracking-wider text-white flex items-center gap-1">
-                PACT<span className="text-rose-500 text-xs font-bold px-1.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20">EXPERIENCE</span>
+              <span className="text-lg font-black tracking-wider text-white flex items-center gap-1.5">
+                PACT
+                <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30 tracking-widest">
+                  APP
+                </span>
               </span>
               <p className="text-[10px] text-slate-400 font-medium tracking-tight">Make Connection an Experience</p>
             </div>
