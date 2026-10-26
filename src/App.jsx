@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Menu, Zap, Sparkles, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, Zap, Sparkles, Bell, CheckCircle2, Heart } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Deck from './components/Deck';
 import ChatRoom from './components/ChatRoom';
@@ -7,31 +8,69 @@ import GameModal from './components/GameModal';
 import ArcadeView from './components/ArcadeView';
 import VibeFeed from './components/VibeFeed';
 import DailyPicks from './components/DailyPicks';
+import AuthModal from './components/AuthModal';
+import AsyncChallengeModal from './components/AsyncChallengeModal';
+import NotificationsDrawer from './components/NotificationsDrawer';
+import EditProfileDrawer from './components/EditProfileDrawer';
 import { 
   PROFILES, 
   INITIAL_MATCHES, 
-  INITIAL_CHAT_MESSAGES 
+  INITIAL_CHAT_MESSAGES,
+  INITIAL_NOTIFICATIONS 
 } from './mockData';
 import confetti from 'canvas-confetti';
 
 export default function App() {
+  // 1. Persistent Auth via localStorage
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pact_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  // Navigation & Channels
   const [currentChannel, setCurrentChannel] = useState('deck');
   const [matches, setMatches] = useState(INITIAL_MATCHES);
   const [activeMatchId, setActiveMatchId] = useState(null);
   const [chatMessages, setChatMessages] = useState(INITIAL_CHAT_MESSAGES);
-  const [activeGame, setActiveGame] = useState(null); // { type, title, partner }
+  
+  // Modals & Drawers
+  const [activeGame, setActiveGame] = useState(null);
+  const [superpactTarget, setSuperpactTarget] = useState(null);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [floatingBanner, setFloatingBanner] = useState(null);
 
-  // Active match object
+  // Active Match
   const activeMatch = matches.find(m => m.id === activeMatchId);
 
-  // Handlers for Deck actions
+  // Unread notifications count
+  const unreadNotifCount = notifications.filter(n => n.unread && n.status === 'pending').length;
+
+  const showFloatingBanner = (text) => {
+    setFloatingBanner(text);
+    setTimeout(() => {
+      setFloatingBanner(null);
+    }, 4000);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('pact_user');
+    setUser(null);
+    setActiveMatchId(null);
+  };
+
+  // Deck Actions
   const handlePass = (profile) => {
-    // profile skipped
+    // Passed
   };
 
   const handleLike = (profile) => {
-    // Check if match already exists
     const existing = matches.find(m => m.profile.id === profile.id);
     if (!existing) {
       const newMatch = {
@@ -44,14 +83,13 @@ export default function App() {
       };
       setMatches(prev => [newMatch, ...prev]);
 
-      // Seed initial welcoming message
       setChatMessages(prev => ({
         ...prev,
         [newMatch.id]: [
           {
             id: `m-init-${Date.now()}`,
             sender: 'them',
-            text: `Hey! Excited we matched on ${profile.interests[0] || 'our vibes'}. Are you down for a quick challenge?`,
+            text: `Hey ${user?.name?.split(' ')[0] || ''}! Excited we matched on ${profile.interests[0] || 'our vibes'}. Are you down for a quick challenge?`,
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           }
         ]
@@ -62,14 +100,90 @@ export default function App() {
     }
   };
 
-  const handleInstantChallenge = (profile) => {
+  // SUPERPACT Action
+  const handleSuperpactClick = (profile) => {
+    setSuperpactTarget(profile);
+  };
+
+  const handleDispatchSuperpact = (payload) => {
+    // Show animated floating banner
+    showFloatingBanner(`⚡ SUPERPACT Sent to ${payload.targetProfile.name}! Your score (${payload.lockedScore}) is locked in.`);
+
+    // Add match if not exists
+    const existing = matches.find(m => m.profile.id === payload.targetProfile.id);
+    if (!existing) {
+      const newMatch = {
+        id: `match-${payload.targetProfile.id}`,
+        profile: payload.targetProfile,
+        lastMessage: `⚡ You sent a SUPERPACT in ${payload.gameTitle}!`,
+        time: "Just now",
+        unread: 0,
+        online: true,
+      };
+      setMatches(prev => [newMatch, ...prev]);
+
+      // Seed chat with SUPERPACT challenge message
+      setChatMessages(prev => ({
+        ...prev,
+        [newMatch.id]: [
+          {
+            id: `m-sp-${Date.now()}`,
+            sender: 'me',
+            type: 'game_invite',
+            gameTitle: payload.gameTitle,
+            gameType: payload.gameType,
+            text: `I launched a SUPERPACT challenge in ${payload.gameTitle}! My turn is locked in (${payload.lockedScore}). Your turn to counter!`,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }
+        ]
+      }));
+    }
+  };
+
+  // Notifications Actions
+  const handleAcceptPact = (notif) => {
+    setNotifications(prev => prev.map(n => n.id === notif.id ? { ...n, status: 'accepted', unread: false } : n));
+    
+    // Add to matches if not present
+    const existing = matches.find(m => m.profile.id === notif.sender.id);
+    const matchId = existing ? existing.id : `match-${notif.sender.id}`;
+    if (!existing) {
+      const newMatch = {
+        id: matchId,
+        profile: notif.sender,
+        lastMessage: "Pact accepted! Say hello or launch a duel.",
+        time: "Just now",
+        unread: 0,
+        online: true,
+      };
+      setMatches(prev => [newMatch, ...prev]);
+    }
+    setActiveMatchId(matchId);
+    setIsNotificationsOpen(false);
+  };
+
+  const handleDismissPact = (notifId) => {
+    setNotifications(prev => prev.map(n => n.id === notifId ? { ...n, status: 'declined', unread: false } : n));
+  };
+
+  const handleAcceptSuperpact = (notif) => {
+    setNotifications(prev => prev.map(n => n.id === notif.id ? { ...n, status: 'accepted', unread: false } : n));
+    setIsNotificationsOpen(false);
+
+    // Launch Game directly into Round 2 counter mode!
     setActiveGame({
-      type: 'number_duel',
-      title: 'Number Duel (1 to 100)',
-      partner: profile,
+      type: notif.gameType,
+      title: notif.gameTitle,
+      partner: notif.sender,
+      counterChallengeData: notif
     });
   };
 
+  const handleDeclineSuperpact = (notifId) => {
+    setNotifications(prev => prev.map(n => n.id === notifId ? { ...n, status: 'declined', unread: false } : n));
+  };
+
+  // Chat message send
   const handleSendMessage = (message) => {
     if (!activeMatchId) return;
 
@@ -78,7 +192,6 @@ export default function App() {
       [activeMatchId]: [...(prev[activeMatchId] || []), message]
     }));
 
-    // Update last message in sidebar
     setMatches(prev => prev.map(m => {
       if (m.id === activeMatchId) {
         return {
@@ -90,15 +203,15 @@ export default function App() {
       return m;
     }));
 
-    // Simulated responsive banter from match
+    // Simulated responsive reply
     if (message.text && !message.text.startsWith('I challenge')) {
       setTimeout(() => {
         const responses = [
-          "Haha totally agree! Have you played Hades II yet?",
+          "Haha totally agree! Have you tried climbing outdoor routes yet?",
           "That's so true. Also I demand a rematch on Number Duel!",
           "Wait, you're into modular synths too?! That's so rare.",
           "We should collaborate on that shared canvas again soon!",
-          "100%! What's your top game of all time?"
+          "100%! Ready for another round whenever you are 🔥"
         ];
         const replyText = responses[Math.floor(Math.random() * responses.length)];
         const replyMsg = {
@@ -112,7 +225,7 @@ export default function App() {
           ...prev,
           [activeMatchId]: [...(prev[activeMatchId] || []), replyMsg]
         }));
-      }, 1400);
+      }, 1300);
     }
   };
 
@@ -135,10 +248,37 @@ export default function App() {
     }));
   };
 
+  // If no persistent user session, render the Romantic Sign-In/Sign-Up portal
+  if (!user) {
+    return <AuthModal onLoginSuccess={(u) => setUser(u)} />;
+  }
+
   return (
-    <div className="min-h-screen bg-darkBg text-slate-100 flex overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-[#0B0A10] text-slate-100 flex overflow-x-hidden font-sans relative selection:bg-rose-500 selection:text-white">
+      {/* Energetic Ambient Radial Glows */}
+      <div className="fixed top-1/4 left-1/4 w-[450px] h-[450px] bg-[#F59E0B]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="fixed bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#FF3366]/12 rounded-full blur-[150px] pointer-events-none" />
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D946EF]/8 rounded-full blur-[180px] pointer-events-none" />
+
+      {/* Animated Floating Confirmation Banner (SUPERPACT Sent) */}
+      <AnimatePresence>
+        {floatingBanner && (
+          <motion.div
+            initial={{ opacity: 0, y: -50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -50, scale: 0.95 }}
+            className="fixed top-5 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 text-white font-extrabold text-xs sm:text-sm shadow-2xl shadow-pink-500/40 flex items-center gap-2 border border-white/20 backdrop-blur-md"
+          >
+            <Zap className="w-4 h-4 fill-white" />
+            <span>{floatingBanner}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* 1. Left Fixed Sidebar */}
       <Sidebar
+        user={user}
+        onSignOut={handleSignOut}
         currentChannel={currentChannel}
         onSelectChannel={(ch) => {
           setCurrentChannel(ch);
@@ -151,12 +291,15 @@ export default function App() {
         }}
         isMobileOpen={isMobileSidebarOpen}
         setIsMobileOpen={setIsMobileSidebarOpen}
+        unreadNotifCount={unreadNotifCount}
+        onOpenNotifications={() => setIsNotificationsOpen(true)}
+        onOpenEditProfile={() => setIsEditProfileOpen(true)}
       />
 
       {/* 2. Main Content Viewport */}
       <main className="flex-1 lg:ml-80 flex flex-col min-h-screen overflow-x-hidden">
-        {/* Top Bar for Mobile & Quick Status */}
-        <header className="h-14 px-4 bg-sidebarBg/70 backdrop-blur-md border-b border-slate-800/80 flex items-center justify-between lg:justify-end shrink-0 z-20">
+        {/* Top Header */}
+        <header className="h-14 px-4 bg-sidebarBg/70 backdrop-blur-md border-b border-slate-800/80 flex items-center justify-between shrink-0 z-20">
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={() => setIsMobileSidebarOpen(true)}
@@ -172,13 +315,28 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 ml-auto">
+            {/* Top Bar Notification Bell with counter */}
+            <button
+              onClick={() => setIsNotificationsOpen(true)}
+              className="relative p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              title="Notifications"
+            >
+              <Bell className="w-5 h-5" />
+              {unreadNotifCount > 0 && (
+                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-pink-500 text-white text-[10px] font-black flex items-center justify-center animate-pulse">
+                  {unreadNotifCount}
+                </span>
+              )}
+            </button>
+
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               <span>Affecio Hacks ’26</span>
             </span>
-            <div className="px-2.5 py-1 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold">
-              Problem #6: Make Connection an Experience
+
+            <div className="px-2.5 py-1 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs font-semibold">
+              Forged in Play
             </div>
           </div>
         </header>
@@ -200,10 +358,12 @@ export default function App() {
             />
           ) : currentChannel === 'deck' ? (
             <Deck
+              user={user}
               profiles={PROFILES}
               onPass={handlePass}
               onLike={handleLike}
-              onInstantChallenge={handleInstantChallenge}
+              onSuperpact={handleSuperpactClick}
+              onOpenEditProfile={() => setIsEditProfileOpen(true)}
             />
           ) : currentChannel === 'arcade' ? (
             <ArcadeView
@@ -227,22 +387,53 @@ export default function App() {
             />
           ) : currentChannel === 'daily' ? (
             <DailyPicks
-              onChallengeProfile={handleInstantChallenge}
+              onChallengeProfile={handleSuperpactClick}
               onMatchProfile={handleLike}
             />
           ) : null}
         </div>
       </main>
 
-      {/* 3. Global Overlay Game Modal */}
+      {/* 3. Global Overlay Mini-Game Modal */}
       {activeGame && (
         <GameModal
           game={activeGame}
           partner={activeGame.partner || PROFILES[0]}
           onClose={() => setActiveGame(null)}
           onExportToChat={handleExportGameToChat}
+          counterChallengeData={activeGame.counterChallengeData}
         />
       )}
+
+      {/* 4. Async SUPERPACT Challenge Dispatch Modal */}
+      {superpactTarget && (
+        <AsyncChallengeModal
+          targetProfile={superpactTarget}
+          onClose={() => setSuperpactTarget(null)}
+          onDispatchSuperpact={handleDispatchSuperpact}
+        />
+      )}
+
+      {/* 5. Notifications & Challenges Drawer */}
+      <NotificationsDrawer
+        isOpen={isNotificationsOpen}
+        onClose={() => setIsNotificationsOpen(false)}
+        notifications={notifications}
+        onAcceptPact={handleAcceptPact}
+        onDismissPact={handleDismissPact}
+        onAcceptSuperpact={handleAcceptSuperpact}
+        onDeclineSuperpact={handleDeclineSuperpact}
+      />
+
+      {/* 6. In-Depth Profile Edit Drawer */}
+      <EditProfileDrawer
+        isOpen={isEditProfileOpen}
+        onClose={() => setIsEditProfileOpen(false)}
+        user={user}
+        onSaveUser={(updatedUser) => {
+          setUser(updatedUser);
+        }}
+      />
     </div>
   );
 }

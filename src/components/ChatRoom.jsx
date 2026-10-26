@@ -211,15 +211,14 @@ export default function ChatRoom({
           </div>
         </div>
 
-        {/* "Launch Experience" Dropdown Button */}
+        {/* Circular Game Launcher Trigger (Pure Crisp White with Hot Pink Gamepad Icon) */}
         <div className="relative">
           <button
             onClick={() => setExperienceOpen(!experienceOpen)}
-            className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold text-xs shadow-lg shadow-orange-500/20 hover:scale-[1.02] active:scale-95 transition-transform flex items-center gap-1.5"
+            className="w-10 h-10 rounded-full bg-white shadow-md hover:scale-105 active:scale-95 transition-transform flex items-center justify-center border border-pink-200/50 group"
+            title="Launch Mini-Game Arena"
           >
-            <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950" />
-            <span>Launch Experience</span>
-            <ChevronDown className={`w-3.5 h-3.5 transition-transform ${experienceOpen ? 'rotate-180' : ''}`} />
+            <Gamepad2 className="w-5 h-5 text-pink-500 stroke-pink-500 stroke-[2.2] group-hover:rotate-12 transition-transform" />
           </button>
 
           {/* Dropdown Menu */}
