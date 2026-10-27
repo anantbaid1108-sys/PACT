@@ -5,7 +5,7 @@
 > **Theme:** Dating & Social Discovery  
 > **Challenge:** Problem Statement #6 — *Make Connection an Experience*  
 > **Repository:** [PACT](https://github.com/anantbaid1108-sys/PACT)  
-> **Live Demo:** [Add Your Live Vercel Link Here]  
+> **Live Demo:** [https://pact-rust.vercel.app](https://pact-rust.vercel.app)  
 
 ---
 
