@@ -16,6 +16,7 @@ import {
   Briefcase
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { GLOBAL_ARTISTS } from '../mockData';
 
 export default function Deck({ 
   user,
@@ -43,9 +44,12 @@ export default function Deck({
       if (!matchesAge) return false;
 
       // 2. Strict Gender
-      if (prefGender !== 'Everyone') {
-        if (prefGender === 'Women' && p.gender !== 'Woman') return false;
-        if (prefGender === 'Men' && p.gender !== 'Man') return false;
+      if (prefGender === 'Women') {
+        const isWoman = p.gender === 'Woman' || p.gender === 'Female';
+        if (!isWoman) return false;
+      } else if (prefGender === 'Men') {
+        const isMan = p.gender === 'Man' || p.gender === 'Male';
+        if (!isMan) return false;
       }
 
       return true;
@@ -186,6 +190,40 @@ export default function Deck({
 
   return (
     <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center justify-center p-2 sm:p-4 min-h-[calc(100vh-5rem)]">
+      {/* Playful Spring/Summer Ambient Theme Background (Floating 🐝 & 🎈 at opacity-10) */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {[
+          { icon: '🐝', x: '10%', delay: 0, duration: 18, size: 'text-2xl' },
+          { icon: '🎈', x: '26%', delay: 3, duration: 22, size: 'text-3xl' },
+          { icon: '🐝', x: '44%', delay: 6, duration: 16, size: 'text-xl' },
+          { icon: '🎈', x: '62%', delay: 2, duration: 25, size: 'text-2xl' },
+          { icon: '🐝', x: '80%', delay: 8, duration: 19, size: 'text-2xl' },
+          { icon: '🎈', x: '92%', delay: 5, duration: 21, size: 'text-3xl' },
+          { icon: '🐝', x: '18%', delay: 10, duration: 17, size: 'text-xl' },
+          { icon: '🎈', x: '72%', delay: 9, duration: 24, size: 'text-2xl' },
+        ].map((item, idx) => (
+          <motion.div
+            key={`spring-ambient-${idx}`}
+            className={`absolute select-none pointer-events-none opacity-10 filter blur-[0.2px] ${item.size}`}
+            style={{ left: item.x, bottom: '-40px' }}
+            animate={{
+              y: [0, -1100],
+              x: [(idx % 2 === 0 ? 1 : -1) * 35, (idx % 2 === 0 ? -1 : 1) * 35],
+              rotate: [0, idx % 2 === 0 ? 25 : -25, 0],
+              opacity: [0, 0.10, 0.10, 0],
+            }}
+            transition={{
+              duration: item.duration,
+              repeat: Infinity,
+              delay: item.delay,
+              ease: 'easeInOut',
+            }}
+          >
+            {item.icon}
+          </motion.div>
+        ))}
+      </div>
+
       {/* Floating Animated Reaction Sprites */}
       <AnimatePresence>
         {floatingIcons.map((item) => (
@@ -210,17 +248,47 @@ export default function Deck({
       {/* Main Dating Profile Card */}
       <motion.div
         key={currentProfile.id}
+        className="w-full bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-rose-950/20 flex flex-col relative z-10"
         initial={{ scale: 0.96, opacity: 0, y: 15 }}
         animate={{ 
-          scale: activeEffect === 'pass' ? 0.9 : activeEffect === 'pact' || activeEffect === 'superpact' ? 1.02 : 1, 
-          opacity: activeEffect ? 0.4 : 1,
-          x: activeEffect === 'pass' ? -180 : activeEffect === 'pact' ? 180 : 0,
-          rotate: activeEffect === 'pass' ? -12 : activeEffect === 'pact' ? 12 : 0,
+          scale: activeEffect === 'pass' ? 0.88 : activeEffect === 'pact' || activeEffect === 'superpact' ? 1.02 : 1, 
+          opacity: activeEffect === 'pass' ? 0 : activeEffect ? 0.4 : 1,
+          x: activeEffect === 'pass' ? -400 : activeEffect === 'pact' ? 180 : 0,
+          rotate: activeEffect === 'pass' ? -18 : activeEffect === 'pact' ? 12 : 0,
           y: activeEffect === 'superpact' ? -40 : 0
         }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="w-full bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-rose-950/20 flex flex-col"
+        transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
       >
+        {/* Animated Thick Neon-Red Double Cross (✕) Slashing Across Card on Pass */}
+        <AnimatePresence>
+          {activeEffect === 'pass' && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1.2, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28, ease: 'easeOut' }}
+              className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none bg-rose-950/25 backdrop-blur-[2px]"
+            >
+              <div className="relative flex items-center justify-center">
+                {/* Glowing neon halo */}
+                <div className="absolute w-44 h-44 rounded-full bg-rose-600/40 blur-2xl animate-pulse" />
+                {/* Thick Neon-Red Double Cross ✕ */}
+                <svg
+                  className="w-56 h-56 text-rose-500 filter drop-shadow-[0_0_35px_rgba(244,63,94,1)] drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="14"
+                  strokeLinecap="round"
+                >
+                  <line x1="22" y1="22" x2="78" y2="78" />
+                  <line x1="78" y1="22" x2="22" y2="78" />
+                </svg>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Photo Stage (Bounded & Contained with Carousel Support) */}
         <div className="relative w-full h-[380px] sm:h-[440px] bg-slate-950 overflow-hidden select-none">
           <img
@@ -338,14 +406,28 @@ export default function Deck({
                 <Music className="w-3.5 h-3.5 text-amber-400" /> Top Music Artists
               </span>
               <div className="flex flex-wrap gap-2">
-                {currentProfile.topArtists.map((artist) => (
-                  <span
-                    key={artist}
-                    className="px-3 py-1 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-semibold flex items-center gap-1.5"
-                  >
-                    <span>♫</span> {artist}
-                  </span>
-                ))}
+                {currentProfile.topArtists.map((artistName) => {
+                  const artistObj = GLOBAL_ARTISTS.find(
+                    a => a.name.toLowerCase() === artistName.toLowerCase()
+                  );
+                  return (
+                    <div
+                      key={artistName}
+                      className="inline-flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-slate-900/80 border border-amber-400/25 text-amber-300 text-xs font-semibold shadow-sm"
+                    >
+                      {artistObj?.avatar ? (
+                        <img
+                          src={artistObj.avatar}
+                          alt={artistName}
+                          className="w-5 h-5 rounded-full object-cover border border-amber-400/40"
+                        />
+                      ) : (
+                        <span className="w-5 h-5 rounded-full bg-amber-400/20 text-amber-400 flex items-center justify-center text-[10px]">♫</span>
+                      )}
+                      <span>{artistName}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

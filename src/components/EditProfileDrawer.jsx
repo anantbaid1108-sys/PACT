@@ -29,9 +29,9 @@ const FAITH_OPTIONS = [
 ];
 
 const CONNECTION_GOALS = [
-  "Long-term relationship",
-  "Short-term / Dating",
-  "Casual vibe",
+  "Long-term",
+  "Casual",
+  "Exploring",
   "Deciding after connecting"
 ];
 
@@ -691,11 +691,12 @@ export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser })
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   {[0, 1, 2, 3].map((slot) => {
                     const artist = formData.topArtists[slot];
+                    const artistObj = artist ? GLOBAL_ARTISTS.find(a => a.name.toLowerCase() === artist.toLowerCase()) : null;
                     return (
                       <div
                         key={slot}
-                        className={`p-3 rounded-xl border text-center flex flex-col justify-between min-h-[90px] ${
-                          artist ? 'bg-rose-500/15 border-rose-500/40 text-white' : 'bg-white/5 border-white/10 text-slate-500'
+                        className={`p-3 rounded-xl border text-center flex flex-col justify-between min-h-[105px] transition-all ${
+                          artist ? 'bg-gradient-to-b from-rose-500/20 to-pink-500/10 border-rose-500/40 text-white shadow-md' : 'bg-white/5 border-white/10 text-slate-500'
                         }`}
                       >
                         <div className="flex justify-between items-center text-[10px] text-slate-400">
@@ -704,15 +705,26 @@ export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser })
                             <button
                               type="button"
                               onClick={() => handleRemoveArtist(slot)}
-                              className="text-slate-400 hover:text-rose-400"
+                              className="text-slate-400 hover:text-rose-400 p-0.5"
                             >
                               ✕
                             </button>
                           )}
                         </div>
-                        <span className="text-xs font-bold my-auto line-clamp-2">
-                          {artist || "Empty"}
-                        </span>
+                        {artist ? (
+                          <div className="my-auto py-1 flex flex-col items-center">
+                            <img
+                              src={artistObj?.avatar || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80"}
+                              alt={artist}
+                              className="w-10 h-10 rounded-full object-cover border border-amber-400/60 shadow-sm mb-1"
+                            />
+                            <span className="text-xs font-bold line-clamp-1">
+                              {artist}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-xs text-slate-500 my-auto">Empty</span>
+                        )}
                       </div>
                     );
                   })}
@@ -723,22 +735,29 @@ export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser })
                   <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                   <input
                     type="text"
-                    placeholder="Search 150+ global artists to add..."
+                    placeholder="Search 150+ global artists (e.g. 'Michael Jackson', 'Arctic Monkeys')..."
                     value={artistSearch}
                     onChange={(e) => setArtistSearch(e.target.value)}
                     className="w-full pl-9 pr-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs placeholder-slate-500"
                   />
                   {filteredArtists.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-1 p-2 rounded-xl bg-[#141220] border border-white/15 shadow-2xl z-20 space-y-1">
+                    <div className="absolute top-full left-0 right-0 mt-1 p-2 rounded-xl bg-[#141220] border border-white/15 shadow-2xl z-20 space-y-1 max-h-56 overflow-y-auto">
                       {filteredArtists.map(a => (
                         <button
                           key={a.name}
                           type="button"
                           onClick={() => handleSelectArtist(a.name)}
-                          className="w-full flex justify-between items-center px-3 py-1.5 rounded-lg text-left hover:bg-white/10 text-xs text-white"
+                          className="w-full flex justify-between items-center px-3 py-1.5 rounded-lg text-left hover:bg-white/10 text-xs text-white group"
                         >
-                          <span className="font-bold">{a.name}</span>
-                          <span className="text-[10px] text-slate-400">{a.genre}</span>
+                          <div className="flex items-center gap-2">
+                            <img
+                              src={a.avatar}
+                              alt={a.name}
+                              className="w-7 h-7 rounded-full object-cover border border-amber-400/40 shrink-0 group-hover:scale-105 transition-transform"
+                            />
+                            <span className="font-bold">{a.name}</span>
+                          </div>
+                          <span className="text-[10px] text-slate-400 font-mono">{a.genre}</span>
                         </button>
                       ))}
                     </div>

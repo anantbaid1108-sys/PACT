@@ -4,67 +4,65 @@
 > **Theme:** Dating & Social Discovery  
 > **Challenge:** Problem Statement #6 — *Make Connection an Experience*  
 > **Repository:** [PACT](https://github.com/anantbaid1108-sys/PACT)  
-> **Live Demo:** [Add Your Live Vercel Link Here]  
+> **Live Demo:** [Add Your Vercel URL Here]  
 
 ---
 
-## 📌 Problem & Overview
+## 📌 Problem & Thesis
 
-Modern social discovery and dating applications have reduced human connection to an inventory catalog:
-1. **Superficial Snap Judgments:** Choices rely almost entirely on curated static photos rather than personality, humor, or authentic dynamics.
-2. **Swipe Fatigue & Ghosting:** Mindless scrolling without interactive engagement breeds conversational burnout.
-3. **The "Dead Opener" Dilemma:** Matches rot in chat inboxes because dry *"Hey"* or *"What's up"* messages fail to ignite real banter.
+Modern dating platforms have reduced human connection to an inventory catalog:
+1. **Superficial Snap Judgments:** Decisions rely almost entirely on static photos rather than personality, humor, or real-time dynamics.
+2. **Swipe Fatigue & Ghosting:** Endless mindless scrolling without engaging interaction creates conversational burnout.
+3. **The "Dead Opener" Dilemma:** Matches rot in chat queues because dry *"Hey"* or *"What's up"* messages fail to spark authentic banter.
 
 ### The Pact Solution
-**Pact** is an **activity-first social chemistry platform**. Instead of evaluating static profiles in a vacuum, strangers discover mutual compatibility by doing things together in real time—dueling in mental deduction games, sketching on a collaborative canvas, and trading memes before deciding to unlock deeper profiles.
+**Pact** is an **activity-first social chemistry platform**. Instead of evaluating static profiles in a vacuum, strangers discover mutual compatibility by doing things together in real time—dueling in mental deduction games, sketching on a collaborative canvas, and trading banter before deciding to unlock deeper connections.
 
 Instead of asking *"Do I like their photos?"*, Pact prompts users to ask *"Do we actually vibe when doing things together?"*
 
 ---
 
-## ✨ Core Features & Architecture
+## ✨ System Architecture & Core Features
 
-### 1. Four-Pillar Social Discovery Engine
-* **Deck (The Swiper):** Clean, high-density cards displaying bio details, lifestyle badges (drinking, smoking, faith), reciprocal 3-word self/partner traits, and interest tags. Mutual matches prompt an immediate icebreaker challenge instead of a blank chat.
-* **Arcade (Instant Queue):** Fast 1v1 blind matchmaking that pairs two active online users into a game within 5 seconds without showing photos first.
-* **Canvas Feed:** A community discovery board featuring user-submitted shared sketches, custom stickers, and meme-taste rankings.
-* **Daily Sparks:** 3 curated profiles delivered every 24 hours calculated from reciprocal trait matrices and shared interest overlap.
+### 1. Multi-Tier Social Discovery Engine
+* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient floating balloon and bee backdrop.
+* **Daily Sparks (24-Hour Cycle):** 5 curated profiles separate from the swiper pool, refreshed every 24 hours via a persistent live countdown timer. Features chemistry resonance scores and trait alignment badges over an ambient fire-and-ember backdrop.
+* **Vibe Feed (Community Canvas):** A showcase feed featuring user-submitted shared doodles, custom stickers, and interactive invitations to join the shared art board.
+* **Notification Hub:** Async match inbox managing direct Pacts and incoming `SUPERPACT` challenges with one-click `[✓ Accept]` and `[✕ Decline]` workflows.
 
-### 2. Live Mini-Game Arena (In-Chat & Queue)
-Accessible via the header dropdown in any active match or queue:
+### 2. Conversational Intelligence: "Cupid AI" Wingman
+Integrated directly above the chat message bar, an autonomous dating assistant provides contextual conversational tools:
+* **Personality & Vibe Briefing:** Synthesizes the match's bio, 3-word traits, and interests into an actionable personality summary.
+* **Message Decoder:** Analyzes incoming text to reveal tone, subtext, and playful intent.
+* **Contextual Conversation & Flirt Prompts:** Generates high-taste opening lines and witty comebacks tailored to mutual interests, populating them directly into the input field with one click.
 
-#### 🏆 Mode A: Competitive Showdowns
-* **Time-Trial Persona Guess (Speed Akinator):** Players interrogate an AI referee (answering strictly *Yes / No / Irrelevant*) to deduct a secret figure; the fastest correct buzz-in wins.
-* **Number Duel (1 to 100):** Hidden integer mind game with alternating turns, real-time *Higher / Lower* feedback, and an active move log.
-* **Doodle Duel:** Fast-paced draw-and-guess showdown against a 60-second timer.
+### 3. Full-Screen Interactive Mini-Game Arena
+* **Doodle Duel:** Real-time alternating draw-and-guess showdown against a 60-second timer with instant word validation.
+* **AI Akinator Oracle:** Branching deduction engine across 30+ pop-culture, gaming, and anime icons featuring reactive AI genie states (Thinking, Shocked, Smirking, Defeated).
+* **Two Truths & a Lie:** Alternating bluffing challenge powered by an intense 10-second rapid-guess countdown bar.
+* **20 Questions Co-Op:** Symmetric mystery exchange where each player knows the other's secret celebrity identity and alternates questions until an instant-win deduction occurs.
+* **Number Duel (1 to 100):** Head-to-head deduction mind game with alternating guess logs and real-time Higher/Lower feedback.
 * **Micro Reflex Tap Race:** Millisecond-precision reaction showdown with randomized light gates.
+* **Collaborative Canvas 2.0:** Rich digital studio with a 12-color palette, stroke controls, highlighter, eraser, and an instant *"Export as Chat Sticker"* pipeline.
+* **Physics Spin the Bottle:** Realistic decelerating glass bottle engine prompting targeted *"Spill the Truth"* or *"Situation Calls"* dilemmas.
+* **Post-Game Banter Engine:** Automatically generates contextual winner (*"You won... but at what cost?"*) and loser (*"I wouldn't have taken that L"*) meme cards that can be injected directly into the chat stream.
 
-#### 🤝 Mode B: Co-Op Banter & Icebreakers
-* **Collaborative Shared Canvas:** Synchronous HTML5 canvas where both users sketch on the same board and can export the artwork directly into the chat stream as an in-line custom sticker.
-* **20 Questions Co-Op:** Players collaborate against an AI Game Master (*Yes / No / Warm / Cold*) to discover a mystery figure in 20 shared questions.
-* **Who's the Imposter? (AI Edition):** Both players and a hidden AI submit responses to a quirky scenario; the pair must collaborate to spot and vote out the bot.
-* **Spin the Bottle:** Dynamic SVG bottle selector serving personalized hypothetical dilemmas generated from mutual profile tags.
-
-### 3. Integrated Chat & Media Engine
-* **Meme Vault (`😂`):** Integrated pop-culture, gaming, and dating meme drawer to assess mutual humor compatibility.
-* **Custom Sticker Creator (`🎨`):** Micro-canvas allowing users to draw a 5-second hand sketch and instantly post it into the chat stream as an image message.
-* **Voice Notes (`🎙️`):** Audio messaging with visual waveform playback.
-
-### 4. Comprehensive Onboarding Wizard
-* **Identity & Verification:** Age verification (strictly 18+), gender, orientation, and location coordinates.
-* **Lifestyle & Habits:** Relationship intent, status, religion, and habit pills (drinking/smoking).
-* **3-Word Coordinates:** Dedicated matrices for *"Describe Yourself in 3 Words"* and *"Looking for in a Partner in 3 Words"*.
-* **1,000+ Tag Cloud:** Searchable categorization across Anime, Gaming, Sports, Tech, Music, and Art.
+### 4. Comprehensive Onboarding & Personalization
+* **Strict Dating Filters:** Strict gender preference and dynamic dual-thumb age range matching (18–80).
+* **Multi-Photo Studio:** Up to 6 photos with designated primary DP selection, caption editing, and reordering.
+* **100+ Categorized Interest Cloud:** Spanning Anime, Gaming, Music, Tech, Outdoors, and Creative Arts.
+* **Top 4 Global Artists Autocomplete:** Real-time prefix filtering featuring global creators with visual artist avatars.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend Framework:** React (Vite) / Next.js with TypeScript
-* **Styling & UI:** Tailwind CSS (Tactical dark theme, mobile-first responsive layout)
-* **Icons & Micro-Interactions:** Lucide React, Framer Motion
-* **Canvas Engine:** HTML5 Canvas API (Synchronous stroke rendering & sticker export pipeline)
-* **Hosting & CI/CD:** Vercel
+* **Frontend Framework:** React (Vite) / Next.js (JavaScript / JSX)
+* **Styling & Design System:** Tailwind CSS (Dark tactical aesthetic, custom glassmorphism, mobile/desktop responsive)
+* **Animations & Micro-Interactions:** Framer Motion, Canvas Confetti
+* **Graphics & Canvas:** HTML5 Canvas API (High-precision stroke rendering & sticker export)
+* **Icons:** Lucide React
+* **Deployment & CI/CD:** Vercel
 
 ---
 
@@ -82,41 +80,12 @@ Accessible via the header dropdown in any active match or queue:
    cd PACT
    ```
 
-2. **Install dependencies:**
+2. **Install project dependencies:**
    ```bash
    npm install
    ```
 
-3. **Start the development server:**
+3. **Start the local development server:**
    ```bash
    npm run dev
    ```
-   Open your browser and navigate to `http://localhost:5173`.
-
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
-
-5. **Preview the production bundle:**
-   ```bash
-   npm run preview
-   ```
-
----
-
-## 🛡️ Safety & Trust Features
-
-* **Strict 18+ Age Gating:** Built-in age verification safeguards.
-* **Contextual Safety Modal:** Accessible from any profile card or chat header.
-* **Instant Disconnect & Block:** Immediate conversation freezing and report logging.
-* **No Unsolicited Media:** Photo sharing is strictly gated behind verified mutual engagement and in-chat interactive tools (Sticker Creator and Meme Vault).
-
----
-
-## 👥 Hackathon Submission
-
-* **Team:** UltraInstinct
-* **Hackathon:** Affecio Hacks ’26
-* **Problem Statement:** #6 — *Make Connection an Experience*
-* **License:** MIT License

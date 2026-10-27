@@ -40,9 +40,9 @@ const FAITH_OPTIONS = [
 ];
 
 const CONNECTION_GOALS = [
-  "Long-term relationship",
-  "Short-term / Dating",
-  "Casual vibe",
+  "Long-term",
+  "Casual",
+  "Exploring",
   "Deciding after connecting"
 ];
 
@@ -1224,9 +1224,18 @@ export default function OnboardingWizard({ initialData, onComplete, onCancel }) 
                         </div>
 
                         {artistName ? (
-                          <div className="my-auto py-1">
-                            <Music className="w-5 h-5 mx-auto text-amber-400 mb-1" />
-                            <span className="text-xs font-bold text-white block line-clamp-2 leading-tight">
+                          <div className="my-auto py-1 flex flex-col items-center">
+                            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400 shadow-md shadow-amber-400/20 mb-1.5 shrink-0">
+                              <img
+                                src={GLOBAL_ARTISTS.find(a => a.name.toLowerCase() === artistName.toLowerCase())?.avatar || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80"}
+                                alt={artistName}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  e.target.src = "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80";
+                                }}
+                              />
+                            </div>
+                            <span className="text-xs font-bold text-white block line-clamp-1 leading-tight">
                               {artistName}
                             </span>
                           </div>
@@ -1253,55 +1262,65 @@ export default function OnboardingWizard({ initialData, onComplete, onCancel }) 
                     <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input
                       type="text"
-                      placeholder="Type any artist name (e.g. 'Arctic', 'Frank', 'Kendrick', 'Ado', 'Taylor')..."
+                      placeholder="Type any artist name (e.g. 'Michael Jackson', 'Arctic', 'Frank', 'The Weeknd')..."
                       value={artistSearch}
                       onChange={(e) => setArtistSearch(e.target.value)}
                       className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 text-xs sm:text-sm"
                     />
                   </div>
 
-                  {/* Autocomplete Dropdown List */}
+                  {/* Autocomplete Dropdown List with Visual Avatars */}
                   {filteredArtists.length > 0 && (
                     <motion.div
                       initial={{ opacity: 0, y: -4 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="p-2 rounded-2xl bg-[#141220] border border-white/15 shadow-2xl space-y-1 max-h-48 overflow-y-auto"
+                      className="p-2 rounded-2xl bg-[#141220] border border-white/15 shadow-2xl space-y-1 max-h-56 overflow-y-auto"
                     >
                       {filteredArtists.map((artist) => (
                         <button
                           key={artist.name}
                           type="button"
                           onClick={() => handleSelectArtist(artist.name)}
-                          className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 transition-colors"
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-left hover:bg-white/10 transition-colors group"
                         >
-                          <div className="flex items-center gap-2">
-                            <Music className="w-4 h-4 text-amber-400" />
-                            <span className="text-xs sm:text-sm font-bold text-white">
-                              {artist.name}
-                            </span>
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <img
+                              src={artist.avatar}
+                              alt={artist.name}
+                              className="w-8 h-8 rounded-full object-cover border border-amber-400/50 shrink-0 group-hover:scale-105 transition-transform"
+                            />
+                            <div className="truncate">
+                              <span className="text-xs sm:text-sm font-bold text-white block truncate">
+                                {artist.name}
+                              </span>
+                              <span className="text-[10px] text-slate-400 block font-mono">
+                                {artist.genre}
+                              </span>
+                            </div>
                           </div>
-                          <span className="text-[10px] text-slate-400 font-mono px-2 py-0.5 rounded-full bg-white/5">
-                            {artist.genre}
+                          <span className="text-[10px] text-amber-300 font-bold px-2 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20 shrink-0">
+                            Select
                           </span>
                         </button>
                       ))}
                     </motion.div>
                   )}
 
-                  {/* Quick Pick Trending Artists */}
+                  {/* Quick Pick Trending Artists (Featuring Michael Jackson!) */}
                   <div className="pt-2">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
                       Popular Global Picks:
                     </span>
                     <div className="flex flex-wrap gap-1.5">
-                      {["Arctic Monkeys", "Frank Ocean", "Tame Impala", "Charli XCX", "Kendrick Lamar", "Billie Eilish", "Daft Punk", "Radiohead"].map((quick) => (
+                      {["Michael Jackson", "The Weeknd", "Arctic Monkeys", "Frank Ocean", "Tame Impala", "Charli XCX", "Kendrick Lamar", "Billie Eilish", "Daft Punk", "Lana Del Rey"].map((quick) => (
                         <button
                           key={quick}
                           type="button"
                           onClick={() => handleSelectArtist(quick)}
-                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/5 border border-white/10 hover:border-amber-400 text-slate-300 hover:text-white transition-all"
+                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/5 border border-white/10 hover:border-amber-400 text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
                         >
-                          + {quick}
+                          <span>+</span>
+                          <span>{quick}</span>
                         </button>
                       ))}
                     </div>

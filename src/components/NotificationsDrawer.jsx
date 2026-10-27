@@ -24,7 +24,7 @@ export default function NotificationsDrawer({
 }) {
   if (!isOpen) return null;
 
-  const directPacts = notifications.filter(n => n.type === 'direct_pact' && n.status === 'pending');
+  const directPacts = notifications.filter(n => (n.type === 'direct_pact' || n.type === 'pact') && n.status === 'pending');
   const superpacts = notifications.filter(n => n.type === 'superpact' && n.status === 'pending');
 
   return (
@@ -117,7 +117,7 @@ export default function NotificationsDrawer({
                     You have been just <strong className="text-pink-400">SUPERPACTED</strong> by {item.sender.name}! Counter their turn now.
                   </p>
 
-                  {/* Actions: Green Tick (Accept Round 2) vs Red Cross (Decline) */}
+                  {/* Actions: Distinct [✓ Accept] vs [✕ Decline] */}
                   <div className="flex items-center gap-2 pt-1 border-t border-slate-800/80">
                     <button
                       type="button"
@@ -125,15 +125,16 @@ export default function NotificationsDrawer({
                       className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black text-xs shadow-md shadow-emerald-500/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-1.5"
                     >
                       <Check className="w-4 h-4 stroke-[3]" />
-                      <span>Accept & Counter Round 2</span>
+                      <span>[✓ Accept] Counter</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => onDeclineSuperpact(item.id)}
-                      className="p-2.5 rounded-xl border border-rose-500/30 text-rose-400 hover:bg-rose-500/20 transition-colors"
+                      className="px-3.5 py-2.5 rounded-xl border border-rose-500/40 text-rose-400 hover:bg-rose-500/20 font-bold text-xs flex items-center gap-1 transition-colors"
                       title="Decline Challenge"
                     >
                       <X className="w-4 h-4 stroke-[2.5]" />
+                      <span>[✕ Decline]</span>
                     </button>
                   </div>
                 </div>
@@ -172,11 +173,11 @@ export default function NotificationsDrawer({
                         <h4 className="text-sm font-bold text-white truncate">{item.sender.name}</h4>
                         <span className="text-[10px] text-slate-400">{item.time}</span>
                       </div>
-                      <p className="text-xs text-slate-300 truncate mt-0.5">{item.message}</p>
+                      <p className="text-xs text-slate-300 truncate mt-0.5">{item.message || "Sent you a direct Pact! Let's connect."}</p>
                     </div>
                   </div>
 
-                  {/* Actions: Accept Match & Open Chat vs Dismiss */}
+                  {/* Actions: Distinct [✓ Accept] vs [✕ Decline] */}
                   <div className="flex items-center gap-2 pt-1 border-t border-slate-800/80">
                     <button
                       type="button"
@@ -184,15 +185,16 @@ export default function NotificationsDrawer({
                       className="flex-1 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs shadow-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-1.5"
                     >
                       <Check className="w-4 h-4 stroke-[3]" />
-                      <span>Accept Match & Chat</span>
+                      <span>[✓ Accept] Match & Chat</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => onDismissPact(item.id)}
-                      className="p-2 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800"
-                      title="Dismiss"
+                      className="px-3 py-2 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800 text-xs font-bold flex items-center gap-1"
+                      title="Decline"
                     >
                       <X className="w-4 h-4" />
+                      <span>[✕ Decline]</span>
                     </button>
                   </div>
                 </div>

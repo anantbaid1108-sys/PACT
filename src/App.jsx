@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, Zap, Sparkles, Bell, CheckCircle2, Heart } from 'lucide-react';
 import Sidebar from './components/Sidebar';
@@ -13,6 +13,7 @@ import AsyncChallengeModal from './components/AsyncChallengeModal';
 import NotificationsDrawer from './components/NotificationsDrawer';
 import EditProfileDrawer from './components/EditProfileDrawer';
 import { 
+  getDivergentPoolsForUser,
   PROFILES, 
   INITIAL_MATCHES, 
   INITIAL_CHAT_MESSAGES,
@@ -31,9 +32,12 @@ export default function App() {
     }
   });
 
+  // Divergent profile pools filtered strictly by datingPreferenceGender
+  const activePools = useMemo(() => getDivergentPoolsForUser(user), [user?.datingPreferenceGender]);
+
   // Navigation & Channels
   const [currentChannel, setCurrentChannel] = useState('deck');
-  const [matches, setMatches] = useState(INITIAL_MATCHES);
+  const [matches, setMatches] = useState(() => activePools.initialMatches);
   const [activeMatchId, setActiveMatchId] = useState(null);
   const [chatMessages, setChatMessages] = useState(INITIAL_CHAT_MESSAGES);
   
@@ -42,9 +46,16 @@ export default function App() {
   const [superpactTarget, setSuperpactTarget] = useState(null);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
-  const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
+  const [notifications, setNotifications] = useState(() => activePools.initialNotifications);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [floatingBanner, setFloatingBanner] = useState(null);
+
+  // Sync matches and notifications when user dating preference updates
+  useEffect(() => {
+    setMatches(activePools.initialMatches);
+    setNotifications(activePools.initialNotifications);
+    setActiveMatchId(null);
+  }, [activePools]);
 
   // Active Match
   const activeMatch = matches.find(m => m.id === activeMatchId);
@@ -238,6 +249,9 @@ export default function App() {
       sender: 'me',
       type: payload.type || 'sticker',
       stickerUrl: payload.stickerUrl,
+      memeUrl: payload.memeUrl,
+      title: payload.title,
+      caption: payload.caption,
       text: payload.caption || 'Shared game achievement exported to chat!',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
@@ -248,8 +262,8 @@ export default function App() {
     }));
   };
 
-  // If no persistent user session, render the Romantic Sign-In/Sign-Up portal
-  if (!user) {
+  // If no persistent user session or onboarding incomplete, render Auth / Onboarding
+  if (!user || !user.onboardingComplete) {
     return <AuthModal onLoginSuccess={(u) => setUser(u)} />;
   }
 
@@ -359,7 +373,7 @@ export default function App() {
           ) : currentChannel === 'deck' ? (
             <Deck
               user={user}
-              profiles={PROFILES}
+              profiles={activePools.deckProfiles}
               onPass={handlePass}
               onLike={handleLike}
               onSuperpact={handleSuperpactClick}
@@ -367,10 +381,10 @@ export default function App() {
             />
           ) : currentChannel === 'arcade' ? (
             <ArcadeView
-              onStartGameWithOpponent={(opponent) => {
+              onStartGameWithOpponent={(opponent, gameType = 'akinator', gameTitle = 'AI Akinator Guess') => {
                 setActiveGame({
-                  type: 'number_duel',
-                  title: 'Number Duel (1 to 100)',
+                  type: gameType,
+                  title: gameTitle,
                   partner: opponent,
                 });
               }}
@@ -381,14 +395,17 @@ export default function App() {
                 setActiveGame({
                   type: 'shared_canvas',
                   title: 'Collaborative Shared Canvas',
-                  partner: PROFILES[0],
+                  partner: activePools.deckProfiles[0],
                 });
               }}
             />
           ) : currentChannel === 'daily' ? (
             <DailyPicks
+              user={user}
+              profiles={activePools.sparksProfiles}
               onChallengeProfile={handleSuperpactClick}
               onMatchProfile={handleLike}
+              onOpenEditProfile={() => setIsEditProfileOpen(true)}
             />
           ) : null}
         </div>
@@ -398,7 +415,7 @@ export default function App() {
       {activeGame && (
         <GameModal
           game={activeGame}
-          partner={activeGame.partner || PROFILES[0]}
+          partner={activeGame.partner || activePools.deckProfiles[0]}
           onClose={() => setActiveGame(null)}
           onExportToChat={handleExportGameToChat}
           counterChallengeData={activeGame.counterChallengeData}

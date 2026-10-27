@@ -1,4 +1,4 @@
-// src/mockData.js - 100+ Categorized Interests, 150+ Global Artists, and Rich Profiles for Pact
+// src/mockData.js - 100+ Categorized Interests, Rich Artist Dataset with Visual Avatars, and 10 Expanded Mock Profiles
 
 export const CATEGORIZED_INTERESTS = {
   "Anime & Pop Culture": [
@@ -17,6 +17,13 @@ export const CATEGORIZED_INTERESTS = {
     "Dark Souls", "Speedrunning", "Final Fantasy", "Helldivers 2", "Hades",
     "Balatro", "CS:GO"
   ],
+  "Sports & Outdoors": [
+    "Football", "Bouldering", "Gym / Lifting", "Cycling", "Meditation",
+    "Hiking", "Running", "Pilates", "Calisthenics", "Surfing",
+    "Skateboarding", "Yoga", "Swimming", "Rock Climbing", "Martial Arts",
+    "Tennis", "Badminton", "Trail Running", "Snowboarding", "Paddleboarding",
+    "Powerlifting", "Scuba Diving", "Ultimate Frisbee", "Volleyball"
+  ],
   "Music & Performance": [
     "Indie Rock", "Phonk", "Hip-Hop", "Techno", "Vinyl", "Electric Guitar",
     "Drumming", "Concerts", "Modular Synthesizers", "Shoegaze", "R&B",
@@ -24,21 +31,14 @@ export const CATEGORIZED_INTERESTS = {
     "Classical Piano", "DJing", "Karaoke", "Math Rock", "Ambient",
     "Lo-Fi Beats", "K-Pop", "City Pop", "Midwest Emo"
   ],
-  "Creativity & Tech": [
+  "Tech & Innovation": [
     "Digital Illustration", "Coding", "UI/UX", "AI Prompting", "Film Photography",
     "Creative Writing", "3D Modeling", "Blender", "Pottery", "Video Editing",
     "Game Dev", "Mechanical Keyboards", "Open Source", "Poetry", "Zine Making",
     "Darkroom Printing", "Robotics", "VR / AR", "Pixel Art", "Calligraphy",
     "Architecture", "Graphic Design", "Hardware Hacking", "Creative Coding"
   ],
-  "Fitness & Outdoors": [
-    "Football", "Bouldering", "Gym / Lifting", "Cycling", "Meditation",
-    "Hiking", "Running", "Pilates", "Calisthenics", "Surfing",
-    "Skateboarding", "Yoga", "Swimming", "Rock Climbing", "Martial Arts",
-    "Tennis", "Badminton", "Trail Running", "Snowboarding", "Paddleboarding",
-    "Powerlifting", "Scuba Diving", "Ultimate Frisbee", "Volleyball"
-  ],
-  "Food & Chill": [
+  "Creative Arts & Chill": [
     "Coffee Brewing", "Baking", "Cooking Experiments", "Ramen Trails",
     "Stargazing", "Board Games", "Matchamaking", "Specialty Tea", "Wine Tasting",
     "Street Food", "Plant Parenting", "Thrifting", "Book Clubs",
@@ -53,225 +53,371 @@ export const ALL_INTERESTS = Object.entries(CATEGORIZED_INTERESTS).flatMap(
   ([category, list]) => list.map(item => ({ name: item, category }))
 );
 
-// 160+ Iconic Global Music Artists & Creators across diverse genres
+// 160+ Iconic Global Music Artists & Creators with high-res avatar thumbnails
 export const GLOBAL_ARTISTS = [
-  // A
-  { name: "Arctic Monkeys", genre: "Indie Rock" },
-  { name: "A$AP Rocky", genre: "Hip-Hop" },
-  { name: "Ado", genre: "J-Pop" },
-  { name: "Avicii", genre: "EDM" },
-  { name: "Ariana Grande", genre: "Pop / R&B" },
-  { name: "Adele", genre: "Soul / Pop" },
-  { name: "ABBA", genre: "Pop / Disco" },
-  { name: "Anirudh Ravichander", genre: "World / Film" },
-  { name: "Alicia Keys", genre: "R&B / Soul" },
-  { name: "Anderson .Paak", genre: "Funk / R&B" },
-  { name: "Aphex Twin", genre: "Electronic / IDM" },
-  { name: "Alan Walker", genre: "Electronic" },
-  { name: "AURORA", genre: "Art Pop" },
-  { name: "Alvvays", genre: "Indie Pop" },
-  { name: "Arcade Fire", genre: "Indie Rock" },
-  { name: "Arlo Parks", genre: "Indie / Neo-Soul" },
-
-  // B
-  { name: "Billie Eilish", genre: "Alt Pop" },
-  { name: "BTS", genre: "K-Pop" },
-  { name: "Beyoncé", genre: "R&B / Pop" },
-  { name: "Bruno Mars", genre: "Funk / Pop" },
-  { name: "Blackpink", genre: "K-Pop" },
-  { name: "Bad Bunny", genre: "Reggaeton / Latin" },
-  { name: "Bon Iver", genre: "Indie Folk" },
-  { name: "Blink-182", genre: "Pop Punk" },
-  { name: "Blur", genre: "Britpop" },
-  { name: "Boygenius", genre: "Indie Rock" },
-  { name: "Beach House", genre: "Dream Pop" },
-  { name: "Beabadoobee", genre: "Indie Rock" },
-  { name: "Bring Me The Horizon", genre: "Alt Rock / Metal" },
-  { name: "Baby Keem", genre: "Hip-Hop" },
-  { name: "Brent Faiyaz", genre: "R&B" },
-
-  // C
-  { name: "Coldplay", genre: "Alt Rock / Pop" },
-  { name: "Charli XCX", genre: "Hyperpop / Club" },
-  { name: "Childish Gambino", genre: "Hip-Hop / Funk" },
-  { name: "Chappell Roan", genre: "Synth-Pop" },
-  { name: "Conan Gray", genre: "Indie Pop" },
-  { name: "Clairo", genre: "Bedroom Pop" },
-  { name: "Cage The Elephant", genre: "Alt Rock" },
-  { name: "Cigarettes After Sex", genre: "Dream Pop" },
-  { name: "Cuco", genre: "Lo-Fi / Latin" },
-  { name: "Calvin Harris", genre: "EDM / Dance" },
-  { name: "Current Joys", genre: "Post-Punk" },
-
-  // D
-  { name: "Drake", genre: "Hip-Hop / R&B" },
-  { name: "Dua Lipa", genre: "Disco-Pop" },
-  { name: "Doja Cat", genre: "Hip-Hop / Pop" },
-  { name: "Deftones", genre: "Alt Metal / Shoegaze" },
-  { name: "Daft Punk", genre: "Electronic / French House" },
-  { name: "Dominic Fike", genre: "Alt / Indie Rock" },
-  { name: "Daniel Caesar", genre: "R&B / Soul" },
-  { name: "David Bowie", genre: "Art Rock" },
-  { name: "Denzel Curry", genre: "Hip-Hop" },
-  { name: "Dean Blunt", genre: "Experimental" },
-  { name: "Djo", genre: "Psychedelic Pop" },
-
-  // E
-  { name: "Eminem", genre: "Hip-Hop" },
-  { name: "Ed Sheeran", genre: "Pop / Acoustic" },
-  { name: "Elton John", genre: "Pop / Rock" },
-  { name: "Ethel Cain", genre: "Alt / Ambient Pop" },
-  { name: "Erykah Badu", genre: "Neo-Soul" },
-  { name: "Evanescence", genre: "Alt Metal" },
-  { name: "Earth, Wind & Fire", genre: "Funk / Disco" },
-
-  // F
-  { name: "Frank Ocean", genre: "R&B / Neo-Soul" },
-  { name: "Fleetwood Mac", genre: "Classic Rock" },
-  { name: "Florence + The Machine", genre: "Indie Rock" },
-  { name: "Freddie Mercury", genre: "Rock" },
-  { name: "Fujii Kaze", genre: "J-Pop / Jazz" },
-  { name: "Fred again..", genre: "Electronic / House" },
-  { name: "Faye Webster", genre: "Indie Folk / R&B" },
-  { name: "Foals", genre: "Indie Rock / Math" },
-  { name: "Fontaines D.C.", genre: "Post-Punk" },
-
-  // G
-  { name: "Gorillaz", genre: "Alt / Electronic" },
-  { name: "Gracie Abrams", genre: "Indie Pop" },
-  { name: "Glass Animals", genre: "Psychedelic Pop" },
-  { name: "Green Day", genre: "Punk Rock" },
-  { name: "Girl in Red", genre: "Indie Pop" },
-  { name: "Giveon", genre: "R&B" },
-
-  // H
-  { name: "Harry Styles", genre: "Pop / Rock" },
-  { name: "Hozier", genre: "Indie Rock / Blues" },
-  { name: "Hayley Williams", genre: "Alt Pop" },
-  { name: "Hans Zimmer", genre: "Cinematic Score" },
-  { name: "Hiatus Kaiyote", genre: "Neo-Soul / Jazz" },
-  { name: "Halsey", genre: "Alt Pop" },
-
-  // I
-  { name: "Imagine Dragons", genre: "Pop Rock" },
-  { name: "IU", genre: "K-Pop / Ballad" },
-  { name: "Interpol", genre: "Post-Punk" },
-  { name: "IDLES", genre: "Post-Punk" },
-  { name: "Ice Spice", genre: "Drill / Hip-Hop" },
-
-  // J
-  { name: "J. Cole", genre: "Hip-Hop" },
-  { name: "Juice WRLD", genre: "Emo Rap" },
-  { name: "JPEGMAFIA", genre: "Experimental Hip-Hop" },
-  { name: "The Japanese House", genre: "Dream Pop" },
-  { name: "Joji", genre: "Lo-Fi / R&B" },
-  { name: "Joy Division", genre: "Post-Punk" },
-  { name: "Jack White", genre: "Blues Rock" },
-
-  // K
-  { name: "Kendrick Lamar", genre: "Hip-Hop" },
-  { name: "Kanye West", genre: "Hip-Hop" },
-  { name: "Kali Uchis", genre: "R&B / Latin" },
-  { name: "King Krule", genre: "Jazz / Indie Rock" },
-  { name: "Khruangbin", genre: "Psychedelic / Funk" },
-  { name: "Keshi", genre: "Lo-Fi / R&B" },
-  { name: "Kaytranada", genre: "House / Hip-Hop" },
-  { name: "Kenshi Yonezu", genre: "J-Pop" },
-
-  // L
-  { name: "Lana Del Rey", genre: "Dream Pop / Baroque" },
-  { name: "Lorde", genre: "Alt Pop" },
-  { name: "Lady Gaga", genre: "Pop / Dance" },
-  { name: "Linkin Park", genre: "Nu Metal / Alt Rock" },
-  { name: "Laufey", genre: "Traditional Pop / Jazz" },
-  { name: "LCD Soundsystem", genre: "Dance-Punk" },
-  { name: "Lil Nas X", genre: "Pop Rap" },
-  { name: "The Lumineers", genre: "Folk Rock" },
-
-  // M
-  { name: "Mac Miller", genre: "Hip-Hop / Jazz" },
-  { name: "Mitski", genre: "Indie Rock" },
-  { name: "Men I Trust", genre: "Dream Pop / Indie" },
-  { name: "Metro Boomin", genre: "Hip-Hop / Trap" },
-  { name: "Muse", genre: "Alt Rock" },
-  { name: "Metallica", genre: "Heavy Metal" },
-  { name: "M83", genre: "Synth-Pop / Ambient" },
-  { name: "My Chemical Romance", genre: "Emo / Alt Rock" },
-  { name: "Magdalena Bay", genre: "Synth-Pop" },
-
-  // N
-  { name: "Nirvana", genre: "Grunge" },
-  { name: "NewJeans", genre: "K-Pop" },
-  { name: "Nine Inch Nails", genre: "Industrial Rock" },
-  { name: "Nothing But Thieves", genre: "Alt Rock" },
-  { name: "New Order", genre: "Synth-Pop / New Wave" },
-  { name: "Noah Kahan", genre: "Folk-Pop" },
-  { name: "Nujabes", genre: "Lo-Fi / Instrumental" },
-
-  // O
-  { name: "Olivia Rodrigo", genre: "Pop Punk / Pop" },
-  { name: "Oasis", genre: "Britpop" },
-  { name: "OneRepublic", genre: "Pop Rock" },
-  { name: "Outkast", genre: "Hip-Hop / Funk" },
-  { name: "Omar Apollo", genre: "R&B / Bedroom Pop" },
-
-  // P
-  { name: "Post Malone", genre: "Hip-Hop / Pop" },
-  { name: "Phoebe Bridgers", genre: "Indie Folk" },
-  { name: "Paramore", genre: "Pop Punk / Alt Rock" },
-  { name: "Pink Floyd", genre: "Progressive Rock" },
-  { name: "Playboi Carti", genre: "Trap / Rage" },
-  { name: "Peggy Gou", genre: "Electronic / Tech House" },
-  { name: "Porter Robinson", genre: "Electronic / Synth-Pop" },
-
-  // Q & R
-  { name: "Queen", genre: "Classic Rock" },
-  { name: "Radiohead", genre: "Art Rock / Electronic" },
-  { name: "Rihanna", genre: "Pop / R&B" },
-  { name: "Rex Orange County", genre: "Bedroom Pop" },
-  { name: "Remi Wolf", genre: "Hyper-Soul" },
-  { name: "Red Hot Chili Peppers", genre: "Funk Rock" },
-  { name: "Rina Sawayama", genre: "Alt Pop" },
-  { name: "Rosalía", genre: "Flamenco / Reggaeton" },
-
-  // S
-  { name: "SZA", genre: "R&B / Soul" },
-  { name: "Steve Lacy", genre: "Lo-Fi / R&B" },
-  { name: "Stray Kids", genre: "K-Pop" },
-  { name: "Sabrina Carpenter", genre: "Pop" },
-  { name: "Sampha", genre: "Soul / Electronic" },
-  { name: "Slowdive", genre: "Shoegaze" },
-  { name: "The Strokes", genre: "Indie Rock" },
-  { name: "Sufjan Stevens", genre: "Indie Folk / Baroque" },
-
-  // T
-  { name: "Taylor Swift", genre: "Pop / Folk" },
-  { name: "Travis Scott", genre: "Hip-Hop / Psychedelic" },
-  { name: "Tyler, The Creator", genre: "Hip-Hop / Neo-Soul" },
-  { name: "The Weeknd", genre: "R&B / Synth-Pop" },
-  { name: "Tame Impala", genre: "Psychedelic Pop" },
-  { name: "The 1975", genre: "Indie Pop" },
-  { name: "The Smiths", genre: "Post-Punk" },
-  { name: "TWICE", genre: "K-Pop" },
-  { name: "Two Door Cinema Club", genre: "Indie Rock" },
-
-  // V, W, Y, Z
-  { name: "Vampire Weekend", genre: "Indie Rock" },
-  { name: "V (BTS)", genre: "R&B / Jazz" },
-  { name: "Vince Staples", genre: "Hip-Hop" },
-  { name: "Vulfpeck", genre: "Funk" },
-  { name: "Weezer", genre: "Alt Rock / Power Pop" },
-  { name: "Wet Leg", genre: "Indie Rock" },
-  { name: "Wallows", genre: "Indie Pop" },
-  { name: "The xx", genre: "Indie Electronic" },
-  { name: "Yeat", genre: "Trap" },
-  { name: "Yves Tumor", genre: "Experimental Rock" },
-  { name: "YOASOBI", genre: "J-Pop" },
-  { name: "Zayn", genre: "R&B / Pop" },
-  { name: "Zach Bryan", genre: "Country / Folk" }
+  // Michael Jackson (Explicitly Compulsory)
+  {
+    name: "Michael Jackson",
+    genre: "Pop / R&B / Soul",
+    avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80"
+  },
+  // The Weeknd
+  {
+    name: "The Weeknd",
+    genre: "R&B / Synth-Pop",
+    avatar: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=200&q=80"
+  },
+  // Arctic Monkeys
+  {
+    name: "Arctic Monkeys",
+    genre: "Indie Rock",
+    avatar: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80"
+  },
+  // A$AP Rocky
+  {
+    name: "A$AP Rocky",
+    genre: "Hip-Hop",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Daft Punk
+  {
+    name: "Daft Punk",
+    genre: "Electronic / French House",
+    avatar: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=200&q=80"
+  },
+  // Lana Del Rey
+  {
+    name: "Lana Del Rey",
+    genre: "Dream Pop / Baroque",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+  },
+  // Kendrick Lamar
+  {
+    name: "Kendrick Lamar",
+    genre: "Hip-Hop / West Coast",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Radiohead
+  {
+    name: "Radiohead",
+    genre: "Art Rock / Electronic",
+    avatar: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=200&q=80"
+  },
+  // Frank Ocean
+  {
+    name: "Frank Ocean",
+    genre: "R&B / Neo-Soul",
+    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=200&q=80"
+  },
+  // Ado
+  {
+    name: "Ado",
+    genre: "J-Pop",
+    avatar: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=200&q=80"
+  },
+  // Billie Eilish
+  {
+    name: "Billie Eilish",
+    genre: "Alt Pop",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
+  },
+  // Tyler, The Creator
+  {
+    name: "Tyler, The Creator",
+    genre: "Hip-Hop / Neo-Soul",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80"
+  },
+  // Tame Impala
+  {
+    name: "Tame Impala",
+    genre: "Psychedelic Pop",
+    avatar: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=200&q=80"
+  },
+  // Charli XCX
+  {
+    name: "Charli XCX",
+    genre: "Hyperpop / Club",
+    avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80"
+  },
+  // Chappell Roan
+  {
+    name: "Chappell Roan",
+    genre: "Synth-Pop",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+  },
+  // Deftones
+  {
+    name: "Deftones",
+    genre: "Alt Metal / Shoegaze",
+    avatar: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=200&q=80"
+  },
+  // Gorillaz
+  {
+    name: "Gorillaz",
+    genre: "Alt / Electronic",
+    avatar: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=200&q=80"
+  },
+  // Mitski
+  {
+    name: "Mitski",
+    genre: "Indie Rock",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+  },
+  // SZA
+  {
+    name: "SZA",
+    genre: "R&B / Soul",
+    avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80"
+  },
+  // Taylor Swift
+  {
+    name: "Taylor Swift",
+    genre: "Pop / Folk",
+    avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=200&q=80"
+  },
+  // Travis Scott
+  {
+    name: "Travis Scott",
+    genre: "Hip-Hop / Psychedelic",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+  },
+  // Fred again..
+  {
+    name: "Fred again..",
+    genre: "Electronic / House",
+    avatar: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=200&q=80"
+  },
+  // Aphex Twin
+  {
+    name: "Aphex Twin",
+    genre: "Electronic / IDM",
+    avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80"
+  },
+  // Khruangbin
+  {
+    name: "Khruangbin",
+    genre: "Psychedelic / Funk",
+    avatar: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=200&q=80"
+  },
+  // Bon Iver
+  {
+    name: "Bon Iver",
+    genre: "Indie Folk",
+    avatar: "https://images.unsplash.com/photo-1445985543469-753ec9c0e7a4?auto=format&fit=crop&w=200&q=80"
+  },
+  // Fujii Kaze
+  {
+    name: "Fujii Kaze",
+    genre: "J-Pop / Jazz",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Joji
+  {
+    name: "Joji",
+    genre: "Lo-Fi / R&B",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Clairo
+  {
+    name: "Clairo",
+    genre: "Bedroom Pop",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
+  },
+  // Boygenius
+  {
+    name: "Boygenius",
+    genre: "Indie Rock",
+    avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80"
+  },
+  // Beach House
+  {
+    name: "Beach House",
+    genre: "Dream Pop",
+    avatar: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=200&q=80"
+  },
+  // Drake
+  {
+    name: "Drake",
+    genre: "Hip-Hop / R&B",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+  },
+  // Dua Lipa
+  {
+    name: "Dua Lipa",
+    genre: "Disco-Pop",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+  },
+  // Avicii
+  {
+    name: "Avicii",
+    genre: "EDM / Melodic",
+    avatar: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=200&q=80"
+  },
+  // Adele
+  {
+    name: "Adele",
+    genre: "Soul / Pop",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+  },
+  // Coldplay
+  {
+    name: "Coldplay",
+    genre: "Alt Rock / Pop",
+    avatar: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80"
+  },
+  // BTS
+  {
+    name: "BTS",
+    genre: "K-Pop",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Blackpink
+  {
+    name: "Blackpink",
+    genre: "K-Pop",
+    avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80"
+  },
+  // NewJeans
+  {
+    name: "NewJeans",
+    genre: "K-Pop / R&B",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
+  },
+  // YOASOBI
+  {
+    name: "YOASOBI",
+    genre: "J-Pop",
+    avatar: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=200&q=80"
+  },
+  // Zach Bryan
+  {
+    name: "Zach Bryan",
+    genre: "Country / Folk",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Dominic Fike
+  {
+    name: "Dominic Fike",
+    genre: "Alt / Indie Rock",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80"
+  },
+  // Daniel Caesar
+  {
+    name: "Daniel Caesar",
+    genre: "R&B / Soul",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Mac Miller
+  {
+    name: "Mac Miller",
+    genre: "Hip-Hop / Jazz",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+  },
+  // Phoebe Bridgers
+  {
+    name: "Phoebe Bridgers",
+    genre: "Indie Folk",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+  },
+  // Steve Lacy
+  {
+    name: "Steve Lacy",
+    genre: "Lo-Fi / R&B",
+    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=200&q=80"
+  },
+  // Linkin Park
+  {
+    name: "Linkin Park",
+    genre: "Nu Metal / Alt Rock",
+    avatar: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=200&q=80"
+  },
+  // Blink-182
+  {
+    name: "Blink-182",
+    genre: "Pop Punk",
+    avatar: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80"
+  },
+  // Nirvana
+  {
+    name: "Nirvana",
+    genre: "Grunge / Rock",
+    avatar: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=200&q=80"
+  },
+  // Olivia Rodrigo
+  {
+    name: "Olivia Rodrigo",
+    genre: "Pop Punk / Pop",
+    avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80"
+  },
+  // Hozier
+  {
+    name: "Hozier",
+    genre: "Indie Rock / Blues",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Harry Styles
+  {
+    name: "Harry Styles",
+    genre: "Pop / Rock",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+  },
+  // Post Malone
+  {
+    name: "Post Malone",
+    genre: "Hip-Hop / Pop",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+  },
+  // Eminem
+  {
+    name: "Eminem",
+    genre: "Hip-Hop",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80"
+  },
+  // Queen
+  {
+    name: "Queen",
+    genre: "Classic Rock",
+    avatar: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80"
+  },
+  // Fleetwood Mac
+  {
+    name: "Fleetwood Mac",
+    genre: "Classic Rock",
+    avatar: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=200&q=80"
+  },
+  // The Strokes
+  {
+    name: "The Strokes",
+    genre: "Indie Rock",
+    avatar: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80"
+  },
+  // Cigarettes After Sex
+  {
+    name: "Cigarettes After Sex",
+    genre: "Dream Pop",
+    avatar: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=200&q=80"
+  },
+  // Alvvays
+  {
+    name: "Alvvays",
+    genre: "Indie Pop",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
+  },
+  // Slowdive
+  {
+    name: "Slowdive",
+    genre: "Shoegaze",
+    avatar: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=200&q=80"
+  },
+  // Men I Trust
+  {
+    name: "Men I Trust",
+    genre: "Dream Pop / Indie",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+  }
 ];
 
-// Rich default user profile with full onboarding schema
+// Default logged-in user profile
 export const CURRENT_USER = {
   id: "user-me",
   name: "Anant Baid",
@@ -299,7 +445,7 @@ export const CURRENT_USER = {
   ],
   bio: "Creative technologist & strategy gamer. Always down for late-night bouldering or deep design rabbit holes.",
   faith: "Spiritual",
-  connectionGoal: "Long-term relationship",
+  connectionGoal: "Long-term",
   threeWords: ["Curious", "Spontaneous", "Caffeinated"],
   smoking: "Never",
   drinking: "Occasionally",
@@ -308,18 +454,25 @@ export const CURRENT_USER = {
   occupationType: "Job",
   workplaceOrCollege: "Pact Labs",
   interests: ["Valorant", "Modular Synthesizers", "Bouldering", "Coding", "UI/UX", "Indie Rock"],
-  topArtists: ["Frank Ocean", "Tame Impala", "Arctic Monkeys", "Radiohead"],
+  topArtists: ["Frank Ocean", "Michael Jackson", "Tame Impala", "Arctic Monkeys"],
   onboardingComplete: true
 };
+// ============================================================================
+// DIVERGENT PROFILE POOLS (100% DISJOINT ACROSS DECK, SPARKS, CHAT & NOTIFS)
+// Strictly separated by gender: Women (28 profiles) & Men (28 profiles)
+// ============================================================================
 
-// Rich Candidate Profiles with multiple photos, captions, and complete filterable metadata
-export const PROFILES = [
+// ----------------------------------------------------------------------------
+// 1. DECK / SWIPER POOL: 15 FEMALE PROFILES (5 with Multi-Photo Captioned Albums)
+// ----------------------------------------------------------------------------
+export const DECK_PROFILES_FEMALE = [
   {
-    id: "user-elena",
+    id: "deck-f-1",
     name: "Elena Rostova",
     age: 24,
     gender: "Woman",
     hometown: "Seattle, WA",
+    location: "Seattle, WA",
     hometownDistanceKm: 18,
     distance: "18 km away",
     occupation: "Industrial Designer",
@@ -337,349 +490,1805 @@ export const PROFILES = [
       },
       {
         url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-        caption: "Post-climb pour-over coffee"
+        caption: "Post-climb espresso"
       }
     ],
-    bio: "Sculpting ergonomic split mechanical keyboards by day, sending V6 boulder problems by night. Looking for someone who doesn't take themselves too seriously and loves rapid banter.",
+    bio: "Sculpting ergonomic split mechanical keyboards by day, sending V6 boulder problems by night. Looking for someone who loves rapid banter, neon synthwave, and anime marathons.",
     selfTraits: ["Tactile", "Tenacious", "Playful"],
     threeWords: ["Tactile", "Tenacious", "Playful"],
     faith: "Agnostic",
-    connectionGoal: "Long-term relationship",
-    interests: ["Mechanical Keyboards", "Bouldering", "Elden Ring", "Post-Rock", "Coffee Brewing"],
-    topArtists: ["Arctic Monkeys", "Radiohead", "Deftones", "Mitski"],
+    connectionGoal: "Long-term",
+    interests: ["Bouldering", "Mechanical Keyboards", "Cyberpunk Edgerunners", "Indie Rock", "Anime & Pop Culture"],
+    topArtists: ["Arctic Monkeys", "Radiohead", "Deftones", "The Weeknd"],
     compatibility: 96,
     gamePrompt: "I bet you can't beat my 194ms reaction speed in Reflex Tap Race ⚡"
   },
   {
-    id: "user-marcus",
-    name: "Marcus Vance",
-    age: 26,
-    gender: "Man",
-    hometown: "Portland, OR",
-    hometownDistanceKm: 42,
-    distance: "42 km away",
-    occupation: "Sound Architect",
-    school: "Cornish College of the Arts",
-    online: true,
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    photos: [
-      {
-        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-        caption: "Eurorack synth patch bay chaos"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-        caption: "Field recording in Olympic National Park"
-      }
-    ],
-    bio: "Patching Eurorack modular synthesizers, recording field audio in the rain, and collecting rare 35mm film lenses. Let's make an impromptu track or co-op a deduction puzzle.",
-    selfTraits: ["Harmonic", "Observant", "Dreamer"],
-    threeWords: ["Harmonic", "Observant", "Dreamer"],
-    faith: "Spiritual",
-    connectionGoal: "Short-term / Dating",
-    interests: ["Modular Synthesizers", "Ambient", "Film Photography", "Chess", "Specialty Tea"],
-    topArtists: ["Aphex Twin", "Khruangbin", "Bon Iver", "Fred again.."],
-    compatibility: 91,
-    gamePrompt: "Try guessing my secret Persona icon in under 5 questions!"
-  },
-  {
-    id: "user-chloe",
-    name: "Chloe Decker",
-    age: 23,
+    id: "deck-f-2",
+    name: "Aria Takahashi",
+    age: 22,
     gender: "Woman",
-    hometown: "Austin, TX",
-    hometownDistanceKm: 28,
-    distance: "28 km away",
-    occupation: "Indie Game Dev",
-    school: "UT Austin Game Lab",
+    hometown: "San Francisco, CA",
+    location: "San Francisco, CA",
+    hometownDistanceKm: 6,
+    distance: "6 km away",
+    occupation: "Concept Artist",
+    school: "Academy of Art University",
     online: true,
     photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
     photos: [
       {
         url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-        caption: "Fixing collision bugs at 2 AM"
+        caption: "Painting Ghibli-inspired cloudscapes"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        caption: "Weekend pottery fail"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+        caption: "Flea market finds"
+      }
+    ],
+    bio: "Concept artist building anime landscapes. High on matcha, low on sleep. Show me your most unhinged playlist.",
+    selfTraits: ["Creative", "Ethereal", "Unfiltered"],
+    threeWords: ["Creative", "Ethereal", "Unfiltered"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Studio Ghibli", "Digital Illustration", "Matchamaking", "Indie Rock", "Zelda"],
+    topArtists: ["YOASOBI", "Tame Impala", "Mitski", "Frank Ocean"],
+    compatibility: 95,
+    gamePrompt: "Can you guess my favorite Studio Ghibli character in 20 Questions? 🐉"
+  },
+  {
+    id: "deck-f-3",
+    name: "Chloe Vance",
+    age: 25,
+    gender: "Woman",
+    hometown: "Brooklyn, NY",
+    location: "Brooklyn, NY",
+    hometownDistanceKm: 12,
+    distance: "12 km away",
+    occupation: "Film Curator & Photographer",
+    school: "NYU Tisch",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+        caption: "Darkroom film negatives review"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        caption: "Weekend pottery fail"
       },
       {
         url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-        caption: "Street taco crawl downtown"
+        caption: "Flea market finds"
       }
     ],
-    bio: "Coding pixel-art roguelites in Godot, practicing competitive fighting games, and hunting for the best street tacos. Looking for someone with dry humor and quick wits.",
-    selfTraits: ["Reckless", "Witty", "Gamer"],
-    threeWords: ["Reckless", "Witty", "Gamer"],
-    faith: "Atheist",
-    connectionGoal: "Casual vibe",
-    interests: ["Game Dev", "Pixel Art", "Balatro", "Fighting Games", "Street Food"],
-    topArtists: ["Charli XCX", "Chappell Roan", "Gorillaz", "Tyler, The Creator"],
-    compatibility: 94,
-    gamePrompt: "Number Duel showdown right now: I picked a number, you have 5 tries 😈"
+    bio: "Shooting 35mm film in underground concerts, hoarding vinyl records, and thrift shopping in Bushwick.",
+    selfTraits: ["Artistic", "Spontaneous", "Vintage"],
+    threeWords: ["Artistic", "Spontaneous", "Vintage"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Film Photography", "Vinyl", "Thrifting", "Shoegaze", "Darkroom Printing"],
+    topArtists: ["Slowdive", "The Strokes", "Alvvays", "Men I Trust"],
+    compatibility: 93,
+    gamePrompt: "Doodle Duel showdown: draw your signature film camera! 📷"
   },
   {
-    id: "user-liam",
-    name: "Liam Tanaka",
-    age: 25,
-    gender: "Man",
-    hometown: "San Francisco, CA",
+    id: "deck-f-4",
+    name: "Maya Lin",
+    age: 23,
+    gender: "Woman",
+    hometown: "Austin, TX",
+    location: "Austin, TX",
     hometownDistanceKm: 8,
     distance: "8 km away",
-    occupation: "Motion Graphics",
-    school: "ArtCenter College of Design",
-    online: false,
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-    photos: [
-      {
-        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-        caption: "Blender kinetic sculpture render"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
-        caption: "Foggy midnight drive across Twin Peaks"
-      }
-    ],
-    bio: "Animating kinetic typography and 3D kinetic sculptures in Blender. Obsessed with cyberpunk aesthetics, Japanese city pop, and night drives through fog.",
-    selfTraits: ["Perfectionist", "Nocturnal", "Cinematic"],
-    threeWords: ["Perfectionist", "Nocturnal", "Cinematic"],
-    faith: "Agnostic",
-    connectionGoal: "Deciding after connecting",
-    interests: ["Blender", "Cyberpunk Edgerunners", "City Pop", "Graphic Design", "Late-night Drives"],
-    topArtists: ["Fujii Kaze", "Daft Punk", "The Weeknd", "Joji"],
-    compatibility: 89,
-    gamePrompt: "Let's draw on the collaborative canvas—best doodle picks the next song."
-  },
-  {
-    id: "user-tara",
-    name: "Tara Sterling",
-    age: 21,
-    gender: "Woman",
-    hometown: "Vancouver, BC",
-    hometownDistanceKm: 65,
-    distance: "65 km away",
-    occupation: "Creative Technologist",
-    school: "SFU Interactive Arts",
+    occupation: "Sound Designer & DJ",
+    school: "UT Austin",
     online: true,
     photo: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
     photos: [
       {
         url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-        caption: "Wiring microcontrollers to bio-plants"
+        caption: "Live modular synth set at warehouse"
       },
       {
-        url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-        caption: "Herbal tea garden experiments"
+        url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+        caption: "Post-climb espresso"
       }
     ],
-    bio: "Wiring microcontrollers to plants and programming generative visual shaders. If you love science fiction books, late-night tea, and cooperative puzzles, we will vibe.",
-    selfTraits: ["Experimental", "Gentle", "Geeky"],
-    threeWords: ["Experimental", "Gentle", "Geeky"],
+    bio: "Sampling analog synths and making warehouse crowds bounce. Also an undercover chess nerd.",
+    selfTraits: ["Electric", "Rhythmic", "Geeky"],
+    threeWords: ["Electric", "Rhythmic", "Geeky"],
     faith: "Spiritual",
-    connectionGoal: "Long-term relationship",
-    interests: ["Creative Coding", "AI Prompting", "Specialty Tea", "Bouldering", "Stargazing"],
-    topArtists: ["AURORA", "Phoebe Bridgers", "Beach House", "Lorde"],
-    compatibility: 95,
-    gamePrompt: "20 Questions Co-Op: I bet we can guess the mystery figure in 12 questions flat."
+    connectionGoal: "Short-term / Playful",
+    interests: ["Modular Synthesizers", "DJing", "Chess", "Techno", "Specialty Tea"],
+    topArtists: ["Fred again..", "Four Tet", "Daft Punk", "Kaytranada"],
+    compatibility: 94,
+    gamePrompt: "Number Duel challenge: can you outsmart my opening gambit?"
   },
   {
-    id: "user-julian",
-    name: "Julian Reyes",
-    age: 27,
-    gender: "Man",
-    hometown: "Denver, CO",
-    hometownDistanceKm: 95,
-    distance: "95 km away",
-    occupation: "Coffee Roaster & Climber",
-    school: "CU Boulder",
-    online: true,
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
-    photos: [
-      {
-        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
-        caption: "Cupping Ethiopian natural beans"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-        caption: "Flatirons lead climbing day"
-      }
-    ],
-    bio: "Dialing in light-roast Ethiopian pour-overs at 6 AM, projecting outdoor sandstone routes at 4 PM. Looking for a partner in crime for road trips and board game rivalries.",
-    selfTraits: ["Grounded", "Adventurous", "Caffeinated"],
-    threeWords: ["Grounded", "Adventurous", "Caffeinated"],
-    faith: "Christian",
-    connectionGoal: "Long-term relationship",
-    interests: ["Coffee Brewing", "Rock Climbing", "Trail Running", "Board Games", "Vinyl"],
-    topArtists: ["Zach Bryan", "Noah Kahan", "Fleetwood Mac", "The Lumineers"],
-    compatibility: 88,
-    gamePrompt: "Board game showdown or reaction test: winner picks the next coffee spot."
-  },
-  {
-    id: "user-maya",
-    name: "Maya Lin",
-    age: 22,
-    gender: "Non-binary",
-    hometown: "Berkeley, CA",
+    id: "deck-f-5",
+    name: "Zoe Sterling",
+    age: 24,
+    gender: "Woman",
+    hometown: "Chicago, IL",
+    location: "Chicago, IL",
     hometownDistanceKm: 14,
     distance: "14 km away",
-    occupation: "Bio-Design Student",
-    school: "UC Berkeley",
+    occupation: "Frontend Engineer & Gamer",
+    school: "Northwestern University",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        caption: "Custom mechanical keyboard sound test"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        caption: "Ramen crawl in West Loop"
+      }
+    ],
+    bio: "Building snappy web apps by day, climbing ranked Valorant ladders by night. Ante 11 in Balatro.",
+    selfTraits: ["Witty", "Competitive", "Caffeinated"],
+    threeWords: ["Witty", "Competitive", "Caffeinated"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Valorant", "Balatro", "Coding", "UI/UX", "Ramen Trails"],
+    topArtists: ["Porter Robinson", "NewJeans", "Charli xcx", "Chvrches"],
+    compatibility: 95,
+    gamePrompt: "I bet you can't beat my 10s Reflex Tap score!"
+  },
+  {
+    id: "deck-f-6",
+    name: "Nina Patel",
+    age: 23,
+    gender: "Woman",
+    hometown: "Denver, CO",
+    location: "Denver, CO",
+    hometownDistanceKm: 22,
+    distance: "22 km away",
+    occupation: "Trail Runner & Plant Biologist",
+    school: "CU Boulder",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+        caption: "Sunrise run on Chautauqua Trail"
+      }
+    ],
+    bio: "Sunrise trail running in the Flatirons followed by pour-over coffee experiments. Passionate about alpine flora.",
+    selfTraits: ["Sunny", "Grounded", "Active"],
+    threeWords: ["Sunny", "Grounded", "Active"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Trail Running", "Plant Parenting", "Coffee Brewing", "Hiking", "Meditation"],
+    topArtists: ["Khruangbin", "Leon Bridges", "Fleet Foxes", "Bon Iver"],
+    compatibility: 91,
+    gamePrompt: "Can you guess my trail summit record in 20 Questions?"
+  },
+  {
+    id: "deck-f-7",
+    name: "Sienna Brooks",
+    age: 25,
+    gender: "Woman",
+    hometown: "Los Angeles, CA",
+    location: "Los Angeles, CA",
+    hometownDistanceKm: 16,
+    distance: "16 km away",
+    occupation: "Fashion Stylist & Ceramist",
+    school: "UCLA",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        caption: "Archival thrift pop-up in Silver Lake"
+      }
+    ],
+    bio: "Curating archival streetwear and throwing wonky ceramic mugs. Let's debate the best matcha in Silver Lake.",
+    selfTraits: ["Aesthetic", "Bubbly", "Chic"],
+    threeWords: ["Aesthetic", "Bubbly", "Chic"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Pottery", "Thrifting", "Matchamaking", "Architecture", "R&B"],
+    topArtists: ["SZA", "Steve Lacy", "Frank Ocean", "Dominic Fike"],
+    compatibility: 90,
+    gamePrompt: "Doodle Duel: sketch your ideal vintage jacket!"
+  },
+  {
+    id: "deck-f-8",
+    name: "Tara Al-Mansoor",
+    age: 24,
+    gender: "Woman",
+    hometown: "Portland, OR",
+    location: "Portland, OR",
+    hometownDistanceKm: 19,
+    distance: "19 km away",
+    occupation: "Book Conservator & Baker",
+    school: "Reed College",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+        caption: "Hand-binding leather poetry volumes"
+      }
+    ],
+    bio: "Restoring antique manuscripts and fermenting sourdough starters. Obsessed with rainy Sunday book clubs.",
+    selfTraits: ["Literary", "Thoughtful", "Warm"],
+    threeWords: ["Literary", "Thoughtful", "Warm"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Book Clubs", "Sourdough", "Baking", "Poetry", "Specialty Tea"],
+    topArtists: ["Phoebe Bridgers", "Sufjan Stevens", "Hozier", "Adrianne Lenker"],
+    compatibility: 89,
+    gamePrompt: "Tell me a book that made you question reality."
+  },
+  {
+    id: "deck-f-9",
+    name: "Riley Jenkins",
+    age: 22,
+    gender: "Woman",
+    hometown: "Boston, MA",
+    location: "Boston, MA",
+    hometownDistanceKm: 11,
+    distance: "11 km away",
+    occupation: "Neuroscience Researcher",
+    school: "MIT",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        caption: "Laser microscopy lab session"
+      }
+    ],
+    bio: "Mapping neural circuits with two-photon lasers. Spending weekends hanging off granite cliffs.",
+    selfTraits: ["Analytical", "Adventurous", "Nerdy"],
+    threeWords: ["Analytical", "Adventurous", "Nerdy"],
+    faith: "Atheist",
+    connectionGoal: "Long-term",
+    interests: ["Rock Climbing", "Bouldering", "Robotics", "Trivia Nights", "Chess"],
+    topArtists: ["Radiohead", "Muse", "Daft Punk", "Gorillaz"],
+    compatibility: 92,
+    gamePrompt: "Challenge me in Number Duel—winner buys the cannoli."
+  },
+  {
+    id: "deck-f-10",
+    name: "Jade Laurent",
+    age: 26,
+    gender: "Woman",
+    hometown: "Montreal, QC",
+    location: "Montreal, QC",
+    hometownDistanceKm: 28,
+    distance: "28 km away",
+    occupation: "Urban Planner & Cyclist",
+    school: "McGill University",
     online: true,
     photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
     photos: [
       {
         url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-        caption: "Growing mycelium architectural models"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-        caption: "Zine printing workshop"
+        caption: "Fixie bike cruise along Canal Lachine"
       }
     ],
-    bio: "Cultivating mycelium packaging and binding risograph art zines. Always on the search for matcha lattes, thrifted coats, and chaotic board games.",
-    selfTraits: ["Inventive", "Thoughtful", "Chaotic"],
-    threeWords: ["Inventive", "Thoughtful", "Chaotic"],
-    faith: "Other",
-    connectionGoal: "Long-term relationship",
-    interests: ["Digital Illustration", "Zine Making", "Matchamaking", "Thrifting", "Indie Rock"],
-    topArtists: ["Boygenius", "Clairo", "Alvvays", "Mitski"],
-    compatibility: 93,
-    gamePrompt: "Memory Duel: 8 pairs of retro cards. Show me what you've got!"
+    bio: "Designing car-free bike avenues and hunting down Montreal bagels. Fluent in French, sarcasm, and coffee.",
+    selfTraits: ["Cosmopolitan", "Spirited", "Direct"],
+    threeWords: ["Cosmopolitan", "Spirited", "Direct"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Cycling", "Architecture", "Coffee Brewing", "Street Food", "Indie Rock"],
+    topArtists: ["Arcade Fire", "Phoenix", "Men I Trust", "The 1975"],
+    compatibility: 91,
+    gamePrompt: "Can you guess my favorite Montreal neighborhood?"
   },
   {
-    id: "user-kaito",
-    name: "Kaito Morita",
+    id: "deck-f-11",
+    name: "Amara Chen",
+    age: 23,
+    gender: "Woman",
+    hometown: "Toronto, ON",
+    location: "Toronto, ON",
+    hometownDistanceKm: 25,
+    distance: "25 km away",
+    occupation: "Indie Game Animator",
+    school: "OCAD University",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        caption: "Pixel art boss animations in Aseprite"
+      }
+    ],
+    bio: "Keyframing 2D fight animations for pixel roguelikes. Tell me your top 3 anime fight scenes.",
+    selfTraits: ["Playful", "Expressive", "Geeky"],
+    threeWords: ["Playful", "Expressive", "Geeky"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Anime & Pop Culture", "Pixel Art", "Game Dev", "Chainsaw Man", "Hades"],
+    topArtists: ["Eve", "Kenshi Yonezu", "Aimer", "Vaundy"],
+    compatibility: 93,
+    gamePrompt: "20 Questions: guess the anime weapon!"
+  },
+  {
+    id: "deck-f-12",
+    name: "Freya Lindqvist",
+    age: 25,
+    gender: "Woman",
+    hometown: "Minneapolis, MN",
+    location: "Minneapolis, MN",
+    hometownDistanceKm: 32,
+    distance: "32 km away",
+    occupation: "Furniture Designer",
+    school: "RISD",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        caption: "Welding brutalist steel side tables"
+      }
+    ],
+    bio: "Welding steel and bentwood walnut tables. Passionate about brutalism, cold dips, and black coffee.",
+    selfTraits: ["Craftsman", "Minimalist", "Calm"],
+    threeWords: ["Craftsman", "Minimalist", "Calm"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Architecture", "Darkroom Printing", "Bouldering", "Vinyl", "Coffee Brewing"],
+    topArtists: ["Bon Iver", "Sigur Rós", "Aphex Twin", "Brian Eno"],
+    compatibility: 88,
+    gamePrompt: "Doodle Duel: draw your dream chair!"
+  },
+  {
+    id: "deck-f-13",
+    name: "Kiera Walsh",
+    age: 24,
+    gender: "Woman",
+    hometown: "San Diego, CA",
+    location: "San Diego, CA",
+    hometownDistanceKm: 15,
+    distance: "15 km away",
+    occupation: "Marine Biologist & Surfer",
+    school: "UCSD",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+        caption: "Dawn patrol at Black's Beach"
+      }
+    ],
+    bio: "Surfing Black's Beach at 6 AM, studying bioluminescent plankton by afternoon. Sun-bleached hair and saltwater.",
+    selfTraits: ["Sun-Drenched", "Daring", "Chill"],
+    threeWords: ["Sun-Drenched", "Daring", "Chill"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Surfing", "Scuba Diving", "Swimming", "Stargazing", "Indie Pop"],
+    topArtists: ["Dominic Fike", "Jack Johnson", "Ocean Alley", "Mac DeMarco"],
+    compatibility: 90,
+    gamePrompt: "Test your tap speed against a Pacific swell!"
+  },
+  {
+    id: "deck-f-14",
+    name: "Natasha Roman",
+    age: 22,
+    gender: "Woman",
+    hometown: "Miami, FL",
+    location: "Miami, FL",
+    hometownDistanceKm: 20,
+    distance: "20 km away",
+    occupation: "3D Motion Designer",
+    school: "Miami Ad School",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+        caption: "Neon cyberpunk render in Octane"
+      }
+    ],
+    bio: "Making holographic render loops in Cinema4D. Obsessed with cyberpunk aesthetics and midnight drives.",
+    selfTraits: ["Cyberpunk", "Bold", "Night-Owl"],
+    threeWords: ["Cyberpunk", "Bold", "Night-Owl"],
+    faith: "Agnostic",
+    connectionGoal: "Short-term / Playful",
+    interests: ["3D Modeling", "Blender", "Cyberpunk 2077", "Late-night Drives", "Hyperpop"],
+    topArtists: ["Grimes", "Charli xcx", "SOPHIE", "Gesaffelstein"],
+    compatibility: 92,
+    gamePrompt: "Reflex race: can you match 120 FPS reaction time?"
+  },
+  {
+    id: "deck-f-15",
+    name: "Isla MacLeod",
     age: 26,
+    gender: "Woman",
+    hometown: "Vancouver, BC",
+    location: "Vancouver, BC",
+    hometownDistanceKm: 30,
+    distance: "30 km away",
+    occupation: "Landscape Architect",
+    school: "UBC",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+        caption: "Overlooking Garibaldi Lake summit"
+      }
+    ],
+    bio: "Designing rooftop botanical sanctuaries. If there's an alpine lake within 15 km, I am hiking to it.",
+    selfTraits: ["Earthy", "Resilient", "Adventurous"],
+    threeWords: ["Earthy", "Resilient", "Adventurous"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Hiking", "Plant Parenting", "Rock Climbing", "Specialty Tea", "Indie Rock"],
+    topArtists: ["The National", "Vampire Weekend", "Daughter", "The War on Drugs"],
+    compatibility: 91,
+    gamePrompt: "Can you guess the highest peak I've scrambled?"
+  }
+];
+
+// ----------------------------------------------------------------------------
+// 2. DECK / SWIPER POOL: 15 MALE PROFILES (5 with Multi-Photo Captioned Albums)
+// ----------------------------------------------------------------------------
+export const DECK_PROFILES_MALE = [
+  {
+    id: "deck-m-1",
+    name: "Marcus Rivera",
+    age: 24,
     gender: "Man",
-    hometown: "San Jose, CA",
-    hometownDistanceKm: 52,
-    distance: "52 km away",
-    occupation: "Robotics Firmware Dev",
-    school: "San Jose State",
+    hometown: "Austin, TX",
+    location: "Austin, TX",
+    hometownDistanceKm: 15,
+    distance: "15 km away",
+    occupation: "Sound Engineer & Synth Builder",
+    school: "UT Austin",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Soldering synth module Eurorack"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        caption: "Post-climb espresso"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "Retro arcade street fighter duel"
+      }
+    ],
+    bio: "Building modular synthesizer cases from reclaimed walnut, dialing in vintage delay pedals, and climbing limestone crags in Austin.",
+    selfTraits: ["Tactile", "Mellow", "Analog"],
+    threeWords: ["Tactile", "Mellow", "Analog"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Modular Synthesizers", "Electric Guitar", "Bouldering", "Vinyl", "Coffee Brewing"],
+    topArtists: ["Tame Impala", "Radiohead", "Khruangbin", "Michael Jackson"],
+    compatibility: 96,
+    gamePrompt: "Bet you can't beat my 10s tap race score! ⚡"
+  },
+  {
+    id: "deck-m-2",
+    name: "Dev Sharma",
+    age: 23,
+    gender: "Man",
+    hometown: "San Francisco, CA",
+    location: "San Francisco, CA",
+    hometownDistanceKm: 7,
+    distance: "7 km away",
+    occupation: "Graphics Programmer",
+    school: "UC Berkeley",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "Debugging shaders at 2 AM"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Weekend pottery fail"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Bouldering session at Mission Cliffs"
+      }
+    ],
+    bio: "Writing compute shaders for procedural worlds. When I'm not in OpenGL, I'm playing fighting games and making cold brew.",
+    selfTraits: ["Analytical", "Playful", "Inventive"],
+    threeWords: ["Analytical", "Playful", "Inventive"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Coding", "Fighting Games", "Bouldering", "Retro Arcade", "Anime & Pop Culture"],
+    topArtists: ["Daft Punk", "Porter Robinson", "The Strokes", "Arctic Monkeys"],
+    compatibility: 95,
+    gamePrompt: "20 Questions co-op: guess the video game boss!"
+  },
+  {
+    id: "deck-m-3",
+    name: "Kai Thorne",
+    age: 25,
+    gender: "Man",
+    hometown: "Brooklyn, NY",
+    location: "Brooklyn, NY",
+    hometownDistanceKm: 13,
+    distance: "13 km away",
+    occupation: "Ceramist & Barista",
+    school: "Pratt Institute",
     online: true,
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
     photos: [
       {
         url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-        caption: "Debugging motor controllers in C++"
+        caption: "Ceramics wheel spinning"
       },
       {
         url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-        caption: "Late night ramen bowl in Japantown"
+        caption: "Flea market finds"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Pour-over chemex ritual"
       }
     ],
-    bio: "Hacking embedded microcontrollers, watching Jujutsu Kaisen on repeat, and climbing at the local gym. Seeking someone who appreciates witty puns and genuine curiosity.",
-    selfTraits: ["Analytical", "Warm", "Nerdy"],
-    threeWords: ["Analytical", "Warm", "Nerdy"],
+    bio: "Throwing stoneware mugs on the wheel, cupping single-origin roasts, and wandering record stores in Greenpoint.",
+    selfTraits: ["Artistic", "Present", "Grounded"],
+    threeWords: ["Artistic", "Present", "Grounded"],
     faith: "Agnostic",
-    connectionGoal: "Deciding after connecting",
-    interests: ["Robotics", "Jujutsu Kaisen", "Ramen Trails", "Bouldering", "Valorant"],
-    topArtists: ["YOASOBI", "Fujii Kaze", "Ado", "Linkin Park"],
+    connectionGoal: "Long-term",
+    interests: ["Pottery", "Coffee Brewing", "Vinyl", "Specialty Tea", "Darkroom Printing"],
+    topArtists: ["Frank Ocean", "Bon Iver", "Mac DeMarco", "Alvvays"],
+    compatibility: 94,
+    gamePrompt: "Doodle Duel match: draw the weirdest coffee mug!"
+  },
+  {
+    id: "deck-m-4",
+    name: "Liam Mercer",
+    age: 24,
+    gender: "Man",
+    hometown: "Seattle, WA",
+    location: "Seattle, WA",
+    hometownDistanceKm: 9,
+    distance: "9 km away",
+    occupation: "Wildlife Photographer",
+    school: "University of Washington",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Trail running through Mt. Rainier mist"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "Acoustic indie folk songwriting"
+      }
+    ],
+    bio: "Tracking bald eagles in the North Cascades with a telephoto lens. Acoustic fingerstyle guitar around the campfire.",
+    selfTraits: ["Adventurous", "Gentle", "Soulful"],
+    threeWords: ["Adventurous", "Gentle", "Soulful"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Trail Running", "Film Photography", "Hiking", "Electric Guitar", "Stargazing"],
+    topArtists: ["Fleet Foxes", "Hozier", "Gregory Alan Isakov", "Lord Huron"],
+    compatibility: 93,
+    gamePrompt: "Can you beat me in Number Duel?"
+  },
+  {
+    id: "deck-m-5",
+    name: "Julian Ortiz",
+    age: 25,
+    gender: "Man",
+    hometown: "Denver, CO",
+    location: "Denver, CO",
+    hometownDistanceKm: 20,
+    distance: "20 km away",
+    occupation: "Industrial Designer",
+    school: "CU Boulder",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Backcountry splitboarding in Vail"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        caption: "Espresso bar testing roast profiles"
+      }
+    ],
+    bio: "Prototyping technical outdoor gear. First tracks on powder days, flat whites on rest days.",
+    selfTraits: ["Driven", "Tenacious", "Spontaneous"],
+    threeWords: ["Driven", "Tenacious", "Spontaneous"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Snowboarding", "Bouldering", "Architecture", "Coffee Brewing", "Industrial Design"],
+    topArtists: ["Kaytranada", "RÜFÜS DU SOL", "Gorillaz", "Justice"],
+    compatibility: 94,
+    gamePrompt: "Reflex duel: let's test your reaction time!"
+  },
+  {
+    id: "deck-m-6",
+    name: "Ethan Cooper",
+    age: 23,
+    gender: "Man",
+    hometown: "Chicago, IL",
+    location: "Chicago, IL",
+    hometownDistanceKm: 12,
+    distance: "12 km away",
+    occupation: "Fintech Dev & Chess Enthusiast",
+    school: "University of Chicago",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "Blitz chess at Lincoln Park"
+      }
+    ],
+    bio: "High-frequency code architecture by day, blitz chess and deep dish pizza by night.",
+    selfTraits: ["Sharp", "Witty", "Direct"],
+    threeWords: ["Sharp", "Witty", "Direct"],
+    faith: "Atheist",
+    connectionGoal: "Long-term",
+    interests: ["Chess", "Coding", "Trivia Nights", "Retro Arcade", "Indie Rock"],
+    topArtists: ["Radiohead", "The Strokes", "Arctic Monkeys", "Interpol"],
+    compatibility: 91,
+    gamePrompt: "Can you beat my blitz chess puzzle score?"
+  },
+  {
+    id: "deck-m-7",
+    name: "Lucas Vance",
+    age: 24,
+    gender: "Man",
+    hometown: "Portland, OR",
+    location: "Portland, OR",
+    hometownDistanceKm: 17,
+    distance: "17 km away",
+    occupation: "Specialty Baker & Fermenter",
+    school: "Lewis & Clark College",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Laminating flaky croissants"
+      }
+    ],
+    bio: "Laminating flaky croissants and brewing wild kombucha. Let's trade favorite recipes and obscure movie recs.",
+    selfTraits: ["Foodie", "Patient", "Warm"],
+    threeWords: ["Foodie", "Patient", "Warm"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Sourdough", "Baking", "Cooking Experiments", "Specialty Tea", "Book Clubs"],
+    topArtists: ["Japanese Breakfast", "Snail Mail", "Phoebe Bridgers", "Clairo"],
+    compatibility: 90,
+    gamePrompt: "Guess the secret ingredient in my sourdough!"
+  },
+  {
+    id: "deck-m-8",
+    name: "Noah Tanaka",
+    age: 26,
+    gender: "Man",
+    hometown: "Los Angeles, CA",
+    location: "Los Angeles, CA",
+    hometownDistanceKm: 14,
+    distance: "14 km away",
+    occupation: "Anime Storyboard Artist",
+    school: "CalArts",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        caption: "Storyboarding combat beats"
+      }
+    ],
+    bio: "Storyboarding dynamic shonen fight sequences. Always down for late-night ramen runs and retro arcade fighting games.",
+    selfTraits: ["Visionary", "Dynamic", "Nocturnal"],
+    threeWords: ["Visionary", "Dynamic", "Nocturnal"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Anime & Pop Culture", "Bleach", "Digital Illustration", "Fighting Games", "Ramen Trails"],
+    topArtists: ["Asian Kung-Fu Generation", "YOASOBI", "King Gnu", "Vaundy"],
     compatibility: 92,
-    gamePrompt: "Dare to challenge me in Number Duel? I know all the binary search tricks."
+    gamePrompt: "Akinator challenge: can the AI guess my favorite anime director?"
+  },
+  {
+    id: "deck-m-9",
+    name: "Rowan Bennett",
+    age: 22,
+    gender: "Man",
+    hometown: "Boston, MA",
+    location: "Boston, MA",
+    hometownDistanceKm: 10,
+    distance: "10 km away",
+    occupation: "Roboticist & Rower",
+    school: "Harvard University",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Testing drone flight PID controllers"
+      }
+    ],
+    bio: "Building quadruped walking robots and rowing on the Charles River at sunrise.",
+    selfTraits: ["Tenacious", "Geeky", "Athletic"],
+    threeWords: ["Tenacious", "Geeky", "Athletic"],
+    faith: "Atheist",
+    connectionGoal: "Long-term",
+    interests: ["Robotics", "Rowing", "Gym / Lifting", "Hardware Hacking", "Coding"],
+    topArtists: ["Muse", "Daft Punk", "CHVRCHES", "deadmau5"],
+    compatibility: 90,
+    gamePrompt: "Tap duel: test your reaction speed against my reflex code!"
+  },
+  {
+    id: "deck-m-10",
+    name: "Aaron Zhang",
+    age: 25,
+    gender: "Man",
+    hometown: "San Jose, CA",
+    location: "San Jose, CA",
+    hometownDistanceKm: 18,
+    distance: "18 km away",
+    occupation: "Keyboard Designer & Climber",
+    school: "San Jose State University",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "CNC milling aluminum keyboard case"
+      }
+    ],
+    bio: "Milling custom aluminum keyboard cases and lubing switches. Sending boulder problems at Dogpatch.",
+    selfTraits: ["Tactile", "Methodical", "Playful"],
+    threeWords: ["Tactile", "Methodical", "Playful"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Mechanical Keyboards", "Bouldering", "3D Modeling", "UI/UX", "Balatro"],
+    topArtists: ["Tame Impala", "Deftones", "Frank Ocean", "The Weeknd"],
+    compatibility: 93,
+    gamePrompt: "Show me your fastest tap score!"
+  },
+  {
+    id: "deck-m-11",
+    name: "Gabriel Rossi",
+    age: 24,
+    gender: "Man",
+    hometown: "New York, NY",
+    location: "New York, NY",
+    hometownDistanceKm: 11,
+    distance: "11 km away",
+    occupation: "Jazz Drummer & Vinyl Collector",
+    school: "Juilliard",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Drumming late night session at Smalls"
+      }
+    ],
+    bio: "Polyrhythms on the kit and digging through dusty jazz vinyl bins in Greenwich Village.",
+    selfTraits: ["Rhythmic", "Soulful", "Spontaneous"],
+    threeWords: ["Rhythmic", "Soulful", "Spontaneous"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Drumming", "Jazz Fusion", "Vinyl", "Concerts", "Coffee Brewing"],
+    topArtists: ["Miles Davis", "Snarky Puppy", "Thundercat", "Kamasi Washington"],
+    compatibility: 91,
+    gamePrompt: "Doodle Duel: draw your favorite instrument!"
+  },
+  {
+    id: "deck-m-12",
+    name: "Felix Lind",
+    age: 23,
+    gender: "Man",
+    hometown: "Minneapolis, MN",
+    location: "Minneapolis, MN",
+    hometownDistanceKm: 26,
+    distance: "26 km away",
+    occupation: "Indie Game Dev & Synthesist",
+    school: "University of Minnesota",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        caption: "Composing chiptune soundtrack"
+      }
+    ],
+    bio: "Solo developing a cozy roguelike deckbuilder with hand-coded synth music.",
+    selfTraits: ["Inventive", "Chill", "Creative"],
+    threeWords: ["Inventive", "Chill", "Creative"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Game Dev", "Balatro", "Modular Synthesizers", "Pixel Art", "Lo-Fi Beats"],
+    topArtists: ["Disasterpeace", "Lena Raine", "C418", "Toby Fox"],
+    compatibility: 92,
+    gamePrompt: "Can you guess my secret game mechanic in 20 Questions?"
+  },
+  {
+    id: "deck-m-13",
+    name: "Samira 'Sam' O'Connor",
+    age: 25,
+    gender: "Man",
+    hometown: "San Diego, CA",
+    location: "San Diego, CA",
+    hometownDistanceKm: 14,
+    distance: "14 km away",
+    occupation: "Kite Surfer & Marine Tech",
+    school: "SDSU",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Catching air on kiteboard at Mission Bay"
+      }
+    ],
+    bio: "Harnessing Pacific winds on a kiteboard and mapping coral reefs with autonomous underwater sensors.",
+    selfTraits: ["Free-Spirited", "Daring", "Warm"],
+    threeWords: ["Free-Spirited", "Daring", "Warm"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Surfing", "Scuba Diving", "Robotics", "Sunset Chasing", "Indie Rock"],
+    topArtists: ["Dominic Fike", "Still Woozy", "Glass Animals", "Vampire Weekend"],
+    compatibility: 89,
+    gamePrompt: "Number Duel: can you guess my lucky swell height?"
+  },
+  {
+    id: "deck-m-14",
+    name: "Zane Wilder",
+    age: 26,
+    gender: "Man",
+    hometown: "Miami, FL",
+    location: "Miami, FL",
+    hometownDistanceKm: 21,
+    distance: "21 km away",
+    occupation: "Electronic Music Producer",
+    school: "University of Miami",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "Late night mastering session in studio"
+      }
+    ],
+    bio: "Producing dark synthwave and phonk tracks. Late night coastal drives and arcade fighting games.",
+    selfTraits: ["Electric", "Bold", "Night-Owl"],
+    threeWords: ["Electric", "Bold", "Night-Owl"],
+    faith: "Agnostic",
+    connectionGoal: "Short-term / Playful",
+    interests: ["Phonk", "Techno", "Late-night Drives", "Retro Arcade", "Modular Synthesizers"],
+    topArtists: ["Kavinsky", "Carpenter Brut", "Gesaffelstein", "Justice"],
+    compatibility: 90,
+    gamePrompt: "Reflex Tap Race: let's test your bpm timing!"
+  },
+  {
+    id: "deck-m-15",
+    name: "Elliot Morales",
+    age: 22,
+    gender: "Man",
+    hometown: "Atlanta, GA",
+    location: "Atlanta, GA",
+    hometownDistanceKm: 16,
+    distance: "16 km away",
+    occupation: "Film Director & Zine Creator",
+    school: "Emory University",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Shooting 16mm indie film on location"
+      }
+    ],
+    bio: "Directing indie music videos on vintage Super 8 film and printing Risograph zines.",
+    selfTraits: ["Artistic", "Eloquent", "Expressive"],
+    threeWords: ["Artistic", "Eloquent", "Expressive"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Film Photography", "Video Editing", "Zine Making", "Poetry", "Indie Rock"],
+    topArtists: ["Steve Lacy", "Tyler, The Creator", "Frank Ocean", "The 1975"],
+    compatibility: 91,
+    gamePrompt: "Doodle Duel: sketch an indie movie poster!"
   }
 ];
 
-export const INITIAL_MATCHES = [
+// ----------------------------------------------------------------------------
+// 3. DAILY SPARKS POOL: 5 CURATED DISTINCT PROFILES PER GENDER (94%–98% Resonance)
+// None of these profiles appear in Deck!
+// ----------------------------------------------------------------------------
+export const SPARKS_PROFILES_FEMALE = [
   {
-    id: "match-elena",
-    profile: PROFILES[0],
+    id: "sparks-f-1",
+    name: "Valentina Cruz",
+    age: 24,
+    gender: "Woman",
+    hometown: "San Francisco, CA",
+    location: "San Francisco, CA",
+    hometownDistanceKm: 5,
+    distance: "5 km away",
+    occupation: "Acoustic Ecologist & VR Audio",
+    school: "Stanford University",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        caption: "Binaural sound recording in Muir Woods"
+      }
+    ],
+    bio: "Acoustic ecologist & VR sound designer. I sample bird songs and modular synth drones in redwood forests. Let's make spatial soundscapes.",
+    selfTraits: ["Resonant", "Playful", "Curious"],
+    threeWords: ["Resonant", "Playful", "Curious"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Sound Design", "VR / AR", "Modular Synthesizers", "Stargazing", "Indie Rock"],
+    topArtists: ["Aphex Twin", "Brian Eno", "Four Tet", "Tame Impala"],
+    compatibility: 98,
+    breakdownTag: "Modular Audio & VR Synergy",
+    breakdownMusic: "Four Tet & Ambient",
+    breakdownTrait: "Playful",
+    gamePrompt: "I challenge you to Reflex Tap Race! Let's see your acoustic rhythm 🎵"
+  },
+  {
+    id: "sparks-f-2",
+    name: "Camille Dubois",
+    age: 23,
+    gender: "Woman",
+    hometown: "New York, NY",
+    location: "New York, NY",
+    hometownDistanceKm: 9,
+    distance: "9 km away",
+    occupation: "Architectural Ceramist",
+    school: "Columbia University",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        caption: "Sculpting ceramic facade tiles"
+      }
+    ],
+    bio: "Architectural ceramist & indie coffee snob. If we go to an art gallery, I will critique the lighting. Obsessed with brutalist concrete & stoneware.",
+    selfTraits: ["Curious", "Tactile", "Eloquent"],
+    threeWords: ["Curious", "Tactile", "Eloquent"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Architecture", "Pottery", "Coffee Brewing", "Specialty Tea", "Art & Chill"],
+    topArtists: ["Alvvays", "Men I Trust", "The Japanese House", "Radiohead"],
+    compatibility: 97,
+    breakdownTag: "Creative Craft Synergy",
+    breakdownMusic: "Alvvays & Men I Trust",
+    breakdownTrait: "Curious",
+    gamePrompt: "Can you guess my favorite architectural movement in 20 Questions?"
+  },
+  {
+    id: "sparks-f-3",
+    name: "Priya Sen",
+    age: 25,
+    gender: "Woman",
+    hometown: "Austin, TX",
+    location: "Austin, TX",
+    hometownDistanceKm: 7,
+    distance: "7 km away",
+    occupation: "Bio-Computation Researcher",
+    school: "UT Austin",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+        caption: "Night cycling on Lady Bird Lake Trail"
+      }
+    ],
+    bio: "Bio-computation researcher & night cyclist. Ask me about CRISPR algorithms or the best midnight breakfast tacos in town.",
+    selfTraits: ["Spontaneous", "Witty", "Driven"],
+    threeWords: ["Spontaneous", "Witty", "Driven"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Cycling", "Coding", "Street Food", "Indie Rock", "Trivia Nights"],
+    topArtists: ["The Strokes", "Arctic Monkeys", "Yeah Yeah Yeahs", "Khruangbin"],
+    compatibility: 96,
+    breakdownTag: "High Energy Code & Cycling",
+    breakdownMusic: "The Strokes & Indie Rock",
+    breakdownTrait: "Spontaneous",
+    gamePrompt: "Number Duel duel right now: winner picks our taco truck stop!"
+  },
+  {
+    id: "sparks-f-4",
+    name: "Hana Murakami",
+    age: 22,
+    gender: "Woman",
+    hometown: "Seattle, WA",
+    location: "Seattle, WA",
+    hometownDistanceKm: 10,
+    distance: "10 km away",
+    occupation: "Type Designer & Anime Archivist",
+    school: "University of Washington",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        caption: "Collecting rare 90s anime animation cels"
+      }
+    ],
+    bio: "Type designer & anime archivist. Drawing geometric kanji glyphs and collecting rare 90s animation cels. Heavy ramen consumer.",
+    selfTraits: ["Tactile", "Aesthetic", "Perceptive"],
+    threeWords: ["Tactile", "Aesthetic", "Perceptive"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["UI/UX", "Anime & Pop Culture", "Graphic Design", "Ramen Trails", "Jujutsu Kaisen"],
+    topArtists: ["YOASOBI", "Eve", "King Gnu", "Asian Kung-Fu Generation"],
+    compatibility: 95,
+    breakdownTag: "Anime & Typography Alignment",
+    breakdownMusic: "YOASOBI & J-Rock",
+    breakdownTrait: "Tactile",
+    gamePrompt: "Doodle Duel match: let's sketch our favorite anime mascot!"
+  },
+  {
+    id: "sparks-f-5",
+    name: "Astrid Lindgren",
+    age: 24,
+    gender: "Woman",
+    hometown: "Portland, OR",
+    location: "Portland, OR",
+    hometownDistanceKm: 12,
+    distance: "12 km away",
+    occupation: "Bouldering Coach & Baker",
+    school: "Reed College",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        caption: "Crag climbing in Smith Rock"
+      }
+    ],
+    bio: "Bouldering coach & sourdough alchemist. I judge climbing gyms by their playlist quality. Let's send problems and split a loaf.",
+    selfTraits: ["Tenacious", "Warm", "Adventurous"],
+    threeWords: ["Tenacious", "Warm", "Adventurous"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Bouldering", "Sourdough", "Rock Climbing", "Vinyl", "Coffee Brewing"],
+    topArtists: ["Phoebe Bridgers", "Deftones", "Boygenius", "Frank Ocean"],
+    compatibility: 94,
+    breakdownTag: "Bouldering & Vinyl Overlap",
+    breakdownMusic: "Phoebe Bridgers & Deftones",
+    breakdownTrait: "Tenacious",
+    gamePrompt: "Can you beat my reaction score in Reflex Tap Race?"
+  }
+];
+
+export const SPARKS_PROFILES_MALE = [
+  {
+    id: "sparks-m-1",
+    name: "Matteo Ricci",
+    age: 24,
+    gender: "Man",
+    hometown: "San Francisco, CA",
+    location: "San Francisco, CA",
+    hometownDistanceKm: 6,
+    distance: "6 km away",
+    occupation: "Robotics Engineer & Jazz Guitarist",
+    school: "Stanford University",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Prototyping drone avionics & jazz licks"
+      }
+    ],
+    bio: "Robotics engineer & jazz guitarist. Building autonomous drones by day and improvising over bebop changes by night.",
+    selfTraits: ["Curious", "Playful", "Inventive"],
+    threeWords: ["Curious", "Playful", "Inventive"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Robotics", "Electric Guitar", "Coding", "Jazz Fusion", "Modular Synthesizers"],
+    topArtists: ["Snarky Puppy", "Miles Davis", "Daft Punk", "Tame Impala"],
+    compatibility: 98,
+    breakdownTag: "Robotics & Jazz Improvisation",
+    breakdownMusic: "Snarky Puppy & Daft Punk",
+    breakdownTrait: "Playful",
+    gamePrompt: "Tap race battle: see if you have jazz timing chops!"
+  },
+  {
+    id: "sparks-m-2",
+    name: "Soren Kjaer",
+    age: 25,
+    gender: "Man",
+    hometown: "Brooklyn, NY",
+    location: "Brooklyn, NY",
+    hometownDistanceKm: 8,
+    distance: "8 km away",
+    occupation: "Typography Designer & Coffee Roaster",
+    school: "Pratt Institute",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        caption: "Letterpress printing wood type posters"
+      }
+    ],
+    bio: "Typography designer & specialty coffee roaster. Obsessed with Swiss modernist posters and natural processed Ethiopians.",
+    selfTraits: ["Methodical", "Tactile", "Calm"],
+    threeWords: ["Methodical", "Tactile", "Calm"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["UI/UX", "Coffee Brewing", "Graphic Design", "Vinyl", "Architecture"],
+    topArtists: ["Radiohead", "Bon Iver", "The National", "Alvvays"],
+    compatibility: 97,
+    breakdownTag: "Swiss Design & Specialty Roasts",
+    breakdownMusic: "Radiohead & Indie Rock",
+    breakdownTrait: "Tactile",
+    gamePrompt: "Doodle Duel: sketch your ideal font ligature!"
+  },
+  {
+    id: "sparks-m-3",
+    name: "Kenji Sato",
+    age: 23,
+    gender: "Man",
+    hometown: "Seattle, WA",
+    location: "Seattle, WA",
+    hometownDistanceKm: 11,
+    distance: "11 km away",
+    occupation: "Indie Game Dev & Handheld Modder",
+    school: "University of Washington",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+        caption: "Modding Game Boy with IPS backlights"
+      }
+    ],
+    bio: "Indie game programmer & retro handheld modder. Building cozy pixel-art RPGs with lo-fi soundtracks.",
+    selfTraits: ["Witty", "Creative", "Nocturnal"],
+    threeWords: ["Witty", "Creative", "Nocturnal"],
+    faith: "Agnostic",
+    connectionGoal: "Long-term",
+    interests: ["Game Dev", "Retro Arcade", "Action RPGs", "Lo-Fi Beats", "Balatro"],
+    topArtists: ["Disasterpeace", "Porter Robinson", "Chvrches", "Mac DeMarco"],
+    compatibility: 96,
+    breakdownTag: "Retro Arcade & Pixel Game Sync",
+    breakdownMusic: "Porter Robinson & Chvrches",
+    breakdownTrait: "Witty",
+    gamePrompt: "Can you guess my favorite retro console in 20 Questions?"
+  },
+  {
+    id: "sparks-m-4",
+    name: "Leo Castillo",
+    age: 24,
+    gender: "Man",
+    hometown: "Austin, TX",
+    location: "Austin, TX",
+    hometownDistanceKm: 9,
+    distance: "9 km away",
+    occupation: "Renewable Energy Engineer",
+    school: "UT Austin",
+    online: false,
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+        caption: "Trail running Barton Creek Greenbelt"
+      }
+    ],
+    bio: "Solar energy engineer & trail runner. Sunrise runs followed by intense breakfast taco debates.",
+    selfTraits: ["High-Energy", "Adventurous", "Sunny"],
+    threeWords: ["High-Energy", "Adventurous", "Sunny"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Trail Running", "Gym / Lifting", "Street Food", "Indie Rock", "Cycling"],
+    topArtists: ["The Strokes", "Arctic Monkeys", "Leon Bridges", "Khruangbin"],
+    compatibility: 95,
+    breakdownTag: "Endurance & Trail Resonance",
+    breakdownMusic: "The Strokes & Leon Bridges",
+    breakdownTrait: "Adventurous",
+    gamePrompt: "Number Duel duel: winner picks the running trail!"
+  },
+  {
+    id: "sparks-m-5",
+    name: "Adrian Blake",
+    age: 26,
+    gender: "Man",
+    hometown: "Denver, CO",
+    location: "Denver, CO",
+    hometownDistanceKm: 17,
+    distance: "17 km away",
+    occupation: "Outdoor Film Director & Climber",
+    school: "CU Boulder",
+    online: true,
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    photos: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        caption: "Shooting 16mm film on Eldorado Canyon"
+      }
+    ],
+    bio: "Outdoor film director & climber. Chasing golden hour light across granite crags with a 16mm camera.",
+    selfTraits: ["Tenacious", "Soulful", "Daring"],
+    threeWords: ["Tenacious", "Soulful", "Daring"],
+    faith: "Spiritual",
+    connectionGoal: "Long-term",
+    interests: ["Film Photography", "Bouldering", "Hiking", "Ambient", "Rock Climbing"],
+    topArtists: ["Brian Eno", "Fleet Foxes", "Lord Huron", "Bon Iver"],
+    compatibility: 94,
+    breakdownTag: "Granite Crags & Analog Cinema",
+    breakdownMusic: "Brian Eno & Fleet Foxes",
+    breakdownTrait: "Tenacious",
+    gamePrompt: "Reflex duel: let's test your shutter finger speed!"
+  }
+];
+
+// ----------------------------------------------------------------------------
+// 4. ACTIVE MATCHES / CHATBOX POOL (4 Distinct Threads per Gender)
+// 100% DISTINCT from Deck and Sparks! Pre-populated with icebreaker banter.
+// ----------------------------------------------------------------------------
+export const MATCH_PROFILES_FEMALE = [
+  {
+    id: "match-mira",
+    profile: {
+      id: "chat-f-1",
+      name: "Mira Solis",
+      age: 24,
+      gender: "Woman",
+      hometown: "San Francisco, CA",
+      location: "San Francisco, CA",
+      occupation: "Game UI Designer & Pixel Artist",
+      photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+      bio: "Game UI designer & pixel artist. Can usually be found ranking matcha lattes or replaying Chrono Trigger with a cat on my lap.",
+      selfTraits: ["Witty", "Perceptive", "Creative"],
+      threeWords: ["Witty", "Perceptive", "Creative"],
+      interests: ["UI/UX", "Pixel Art", "Matchamaking", "Indie Rock", "Balatro"],
+      topArtists: ["Radiohead", "Tame Impala", "Mitski", "Porter Robinson"],
+      compatibility: 97
+    },
     lastMessage: "I accept your challenge! Round 2 is ON 🎮",
     time: "2m ago",
     unread: 1,
-    online: true,
+    online: true
   },
   {
-    id: "match-chloe",
-    profile: PROFILES[2],
-    lastMessage: "Wait, you actually like modular synth music?!",
+    id: "match-roxie",
+    profile: {
+      id: "chat-f-2",
+      name: "Roxie Chen",
+      age: 23,
+      gender: "Woman",
+      hometown: "Seattle, WA",
+      location: "Seattle, WA",
+      occupation: "Film Editor & Indie Guitarist",
+      photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+      bio: "Film editor & indie rock guitarist. Looking for someone who doesn't skip movie credits and loves basement gigs.",
+      selfTraits: ["Playful", "Expressive", "Caffeinated"],
+      threeWords: ["Playful", "Expressive", "Caffeinated"],
+      interests: ["Electric Guitar", "Video Editing", "Concerts", "Vinyl", "City Pop"],
+      topArtists: ["The Strokes", "Alvvays", "Slowdive", "Men I Trust"],
+      compatibility: 95
+    },
+    lastMessage: "Wait, you actually listen to Taeko Onuki too?!",
     time: "15m ago",
     unread: 0,
-    online: true,
+    online: true
   },
   {
-    id: "match-tara",
-    profile: PROFILES[4],
-    lastMessage: "Sent you a doodle in the shared canvas! 🎨",
+    id: "match-talia",
+    profile: {
+      id: "chat-f-3",
+      name: "Talia Vance",
+      age: 25,
+      gender: "Woman",
+      hometown: "Austin, TX",
+      location: "Austin, TX",
+      occupation: "Backend Architect & Boulderer",
+      photo: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+      bio: "Backend architect & competitive boulderer. Equal parts caffeine, code, and climbing chalk.",
+      selfTraits: ["Direct", "Adventurous", "Dry-Humor"],
+      threeWords: ["Direct", "Adventurous", "Dry-Humor"],
+      interests: ["Bouldering", "Coding", "Trivia Nights", "Calisthenics", "Street Food"],
+      topArtists: ["Arctic Monkeys", "Deftones", "Khruangbin", "Gorillaz"],
+      compatibility: 94
+    },
+    lastMessage: "Flashed a V6 today! Winner of tap race gets brag rights.",
     time: "1h ago",
     unread: 0,
-    online: false,
+    online: false
+  },
+  {
+    id: "match-celeste",
+    profile: {
+      id: "chat-f-4",
+      name: "Celeste Laurent",
+      age: 24,
+      gender: "Woman",
+      hometown: "New York, NY",
+      location: "New York, NY",
+      occupation: "Editorial Illustrator",
+      photo: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+      bio: "Editorial illustrator & vintage bookstore stalker. I will judge you by your favourite Studio Ghibli soundtrack.",
+      selfTraits: ["Dreamy", "Eloquent", "Artistic"],
+      threeWords: ["Dreamy", "Eloquent", "Artistic"],
+      interests: ["Digital Illustration", "Studio Ghibli", "Thrifting", "Book Clubs", "Specialty Tea"],
+      topArtists: ["Joe Hisaishi", "Phoebe Bridgers", "Sufjan Stevens", "Frank Ocean"],
+      compatibility: 96
+    },
+    lastMessage: "Spirited Away soundtrack or nothing! ✨",
+    time: "3h ago",
+    unread: 0,
+    online: true
   }
 ];
 
+export const MATCH_PROFILES_MALE = [
+  {
+    id: "match-rowan",
+    profile: {
+      id: "chat-m-1",
+      name: "Rowan Mercer",
+      age: 24,
+      gender: "Man",
+      hometown: "San Francisco, CA",
+      location: "San Francisco, CA",
+      occupation: "Creative Dev & Synthesist",
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      bio: "Creative developer & synthesizer tinkerer. Designing interactive websites by day, coding generative art by night.",
+      selfTraits: ["Inventive", "Chill", "Curious"],
+      threeWords: ["Inventive", "Chill", "Curious"],
+      interests: ["Coding", "Modular Synthesizers", "UI/UX", "Ambient", "Indie Rock"],
+      topArtists: ["Tame Impala", "Aphex Twin", "Radiohead", "Four Tet"],
+      compatibility: 97
+    },
+    lastMessage: "Sent you that West Coast modular patch! 🎹",
+    time: "4m ago",
+    unread: 1,
+    online: true
+  },
+  {
+    id: "match-dylan",
+    profile: {
+      id: "chat-m-2",
+      name: "Dylan Hayes",
+      age: 23,
+      gender: "Man",
+      hometown: "Seattle, WA",
+      location: "Seattle, WA",
+      occupation: "Industrial Designer & Barista",
+      photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+      bio: "Industrial designer & espresso mechanic. If your pour-over brew ratio isn't 1:16, we need to talk.",
+      selfTraits: ["Precise", "Playful", "Tenacious"],
+      threeWords: ["Precise", "Playful", "Tenacious"],
+      interests: ["Coffee Brewing", "Bouldering", "3D Modeling", "Indie Rock", "Specialty Tea"],
+      topArtists: ["The Strokes", "Fleet Foxes", "Khruangbin", "Mac DeMarco"],
+      compatibility: 95
+    },
+    lastMessage: "Dialed in an anaerobic natural Ethiopian ☕",
+    time: "25m ago",
+    unread: 0,
+    online: true
+  },
+  {
+    id: "match-caleb",
+    profile: {
+      id: "chat-m-3",
+      name: "Caleb Kim",
+      age: 25,
+      gender: "Man",
+      hometown: "Austin, TX",
+      location: "Austin, TX",
+      occupation: "Game Audio & Fighter",
+      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+      bio: "Game sound designer & fighting game enthusiast. Hit me with your best Balatro or Street Fighter strategy.",
+      selfTraits: ["Strategic", "High-Energy", "Witty"],
+      threeWords: ["Strategic", "High-Energy", "Witty"],
+      interests: ["Fighting Games", "Balatro", "eSports", "Phonk", "Retro Arcade"],
+      topArtists: ["Daft Punk", "Kaytranada", "Justice", "Carpenter Brut"],
+      compatibility: 94
+    },
+    lastMessage: "I challenge you in Number Duel right now!",
+    time: "1h ago",
+    unread: 0,
+    online: false
+  },
+  {
+    id: "match-jasper",
+    profile: {
+      id: "chat-m-4",
+      name: "Jasper Cole",
+      age: 24,
+      gender: "Man",
+      hometown: "New York, NY",
+      location: "New York, NY",
+      occupation: "Analog Photographer & Zine Maker",
+      photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+      bio: "Analog photographer & indie magazine publisher. Darkroom chemicals and live basement rock shows.",
+      selfTraits: ["Observant", "Creative", "Spontaneous"],
+      threeWords: ["Observant", "Creative", "Spontaneous"],
+      interests: ["Film Photography", "Vinyl", "Concerts", "Zine Making", "Darkroom Printing"],
+      topArtists: ["Slowdive", "Bon Iver", "Alvvays", "The 1975"],
+      compatibility: 96
+    },
+    lastMessage: "Let's do a photo walk or sketch on the canvas sometime!",
+    time: "4h ago",
+    unread: 0,
+    online: true
+  }
+];
+
+// Pre-populated rich message threads
 export const INITIAL_CHAT_MESSAGES = {
-  "match-elena": [
+  "match-mira": [
     {
-      id: "m-1",
+      id: "m-m1",
       sender: "them",
-      text: "Hey! Saw you're also into mechanical keyboards and bouldering. Have you tried outdoor rock yet?",
+      text: "Okay honest question: did you also spend 30 hours perfecting your desk cable management, or are you normal?",
       timestamp: "10:14 PM"
     },
     {
-      id: "m-2",
+      id: "m-m2",
       sender: "me",
-      text: "Yes! Spent last weekend bouldering in Leavenworth. Flashed a V5, but the friction was brutal.",
+      text: "I literally used magnetic channels and custom sleeves. It’s an art form.",
       timestamp: "10:16 PM"
     },
     {
-      id: "m-3",
+      id: "m-m3",
       sender: "them",
-      text: "No way! That specific overhang problem is notorious. I challenge you to Reflex Tap Race right now—winner picks our first co-op session!",
+      text: "YES!! I knew you were my kind of nerd. I demand an AI Akinator showdown—winner picks our first boba order 🧋",
       timestamp: "10:18 PM"
     }
   ],
-  "match-chloe": [
+  "match-roxie": [
+    {
+      id: "m-r1",
+      sender: "them",
+      text: "Your music taste on your card is immaculate. Have you heard that new Japanese city pop reissue?",
+      timestamp: "8:30 PM"
+    },
+    {
+      id: "m-r2",
+      sender: "me",
+      text: "The Taeko Onuki repress? Ordered the vinyl the second it dropped.",
+      timestamp: "8:34 PM"
+    },
+    {
+      id: "m-r3",
+      sender: "them",
+      text: "NO WAY. We are officially destined to share aux cord privileges.",
+      timestamp: "8:35 PM"
+    }
+  ],
+  "match-talia": [
+    {
+      id: "m-t1",
+      sender: "them",
+      text: "Flashed a V6 today and celebrated with street tacos. You ready for a Reflex Tap Race duel or are you scared?",
+      timestamp: "4:12 PM"
+    },
+    {
+      id: "m-t2",
+      sender: "me",
+      text: "I never back down from a reflex challenge. Let's see your best score.",
+      timestamp: "4:15 PM"
+    },
+    {
+      id: "m-t3",
+      sender: "them",
+      text: "Bold words! Don't cry when my 10-second tap counter leaves you in the dust 🔥",
+      timestamp: "4:16 PM"
+    }
+  ],
+  "match-celeste": [
     {
       id: "m-c1",
       sender: "them",
-      text: "Balatro addicted too? What's your highest ante run?",
-      timestamp: "8:30 PM"
+      text: "Howl’s Moving Castle theme on piano hits different at 1 AM. Do you have a comfort album?",
+      timestamp: "Yesterday"
     },
     {
       id: "m-c2",
       sender: "me",
-      text: "Ante 12 with a holographic Baron setup! Completely wrecked the boss blind.",
-      timestamp: "8:34 PM"
+      text: "Spirited Away soundtrack or anything by Joe Hisaishi, hands down.",
+      timestamp: "Yesterday"
+    },
+    {
+      id: "m-c3",
+      sender: "them",
+      text: "Taste verified. We should collaborate on that shared canvas and doodle soot sprites ✨",
+      timestamp: "Yesterday"
     }
   ],
-  "match-tara": [
+  "match-rowan": [
     {
-      id: "m-t1",
+      id: "m-ro1",
       sender: "them",
-      text: "Sent you a doodle in the shared canvas! 🎨 Let me know if you can guess what animal it is.",
+      text: "Hey! Saw your modular synth tags. Are you doing subtractive synthesis or FM patches mostly?",
+      timestamp: "10:10 PM"
+    },
+    {
+      id: "m-ro2",
+      sender: "me",
+      text: "Mostly West Coast modular—complex wavefolders and FM pinging!",
+      timestamp: "10:12 PM"
+    },
+    {
+      id: "m-ro3",
+      sender: "them",
+      text: "A person of refined acoustic taste! We need to trade patches or do a collaborative canvas doodle.",
+      timestamp: "10:15 PM"
+    }
+  ],
+  "match-dylan": [
+    {
+      id: "m-dy1",
+      sender: "them",
+      text: "What's your current coffee bean rotation? I just dialed in an anaerobic natural Ethiopian.",
+      timestamp: "7:40 PM"
+    },
+    {
+      id: "m-dy2",
+      sender: "me",
+      text: "A washed Colombian with peach and bergamot notes. Incredible acidity.",
+      timestamp: "7:44 PM"
+    },
+    {
+      id: "m-dy3",
+      sender: "them",
+      text: "Alright, coffee test passed with flying colors! Ready for a friendly duel?",
+      timestamp: "7:46 PM"
+    }
+  ],
+  "match-caleb": [
+    {
+      id: "m-ca1",
+      sender: "them",
+      text: "Ready for an arcade showdown? I challenge you in Number Duel right now!",
+      timestamp: "2:10 PM"
+    },
+    {
+      id: "m-ca2",
+      sender: "me",
+      text: "Challenge accepted. You won't guess my number in under 4 turns.",
+      timestamp: "2:15 PM"
+    },
+    {
+      id: "m-ca3",
+      sender: "them",
+      text: "We'll see about that! Game on 🕹️",
+      timestamp: "2:18 PM"
+    }
+  ],
+  "match-jasper": [
+    {
+      id: "m-ja1",
+      sender: "them",
+      text: "Do you shoot 35mm or medium format? Saw the film grain in your profile photo.",
+      timestamp: "Yesterday"
+    },
+    {
+      id: "m-ja2",
+      sender: "me",
+      text: "Both! 35mm for street candids, 120 for portraits.",
+      timestamp: "Yesterday"
+    },
+    {
+      id: "m-ja3",
+      sender: "them",
+      text: "Love that. Let's do a photo walk or sketch on the canvas sometime!",
       timestamp: "Yesterday"
     }
   ]
 };
 
-export const INITIAL_NOTIFICATIONS = [
+// ----------------------------------------------------------------------------
+// 5. NOTIFICATION CENTER POOL: 4 DISTINCT PROFILES PER GENDER
+// 100% DISTINCT from Deck, Sparks, and Chat! Complete with [✓ Accept] & [✕ Decline].
+// ----------------------------------------------------------------------------
+export const NOTIF_PROFILES_FEMALE = [
   {
-    id: "notif-1",
+    id: "notif-f-1",
     type: "superpact",
-    sender: PROFILES[0],
+    sender: {
+      id: "notif-user-f1",
+      name: "Maya Thorne",
+      age: 23,
+      gender: "Woman",
+      location: "Seattle, WA",
+      occupation: "Indie Sound Designer",
+      photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+      interests: ["Modular Synthesizers", "Indie Rock", "Bouldering"]
+    },
     gameType: "tap_race",
     gameTitle: "Reflex Tap Race (10s)",
-    lockedScore: 78,
+    lockedScore: 82,
+    time: "3m ago",
+    status: "pending",
+    unread: true
+  },
+  {
+    id: "notif-f-2",
+    type: "direct_pact",
+    sender: {
+      id: "notif-user-f2",
+      name: "Nadia Rostova",
+      age: 24,
+      gender: "Woman",
+      location: "Austin, TX",
+      occupation: "Ceramist & Climber",
+      photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+      interests: ["Pottery", "Bouldering", "Specialty Tea"]
+    },
+    time: "18m ago",
+    status: "pending",
+    unread: true
+  },
+  {
+    id: "notif-f-3",
+    type: "superpact",
+    sender: {
+      id: "notif-user-f3",
+      name: "Clara Bell",
+      age: 22,
+      gender: "Woman",
+      location: "San Francisco, CA",
+      occupation: "AI Prompt Artist",
+      photo: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+      interests: ["Digital Illustration", "Anime & Pop Culture", "Coding"]
+    },
+    gameType: "number_duel",
+    gameTitle: "Number Duel (1 to 100)",
+    lockedScore: 4,
+    time: "45m ago",
+    status: "pending",
+    unread: true
+  },
+  {
+    id: "notif-f-4",
+    type: "direct_pact",
+    sender: {
+      id: "notif-user-f4",
+      name: "Selene Wu",
+      age: 25,
+      gender: "Woman",
+      location: "Brooklyn, NY",
+      occupation: "Vinyl DJ & Curator",
+      photo: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+      interests: ["Vinyl", "DJing", "Shoegaze"]
+    },
+    time: "2h ago",
+    status: "pending",
+    unread: true
+  }
+];
+
+export const NOTIF_PROFILES_MALE = [
+  {
+    id: "notif-m-1",
+    type: "superpact",
+    sender: {
+      id: "notif-user-m1",
+      name: "Tristan Walker",
+      age: 24,
+      gender: "Man",
+      location: "Seattle, WA",
+      occupation: "Game Physics Programmer",
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      interests: ["Game Dev", "Retro Arcade", "Coding"]
+    },
+    gameType: "tap_race",
+    gameTitle: "Reflex Tap Race (10s)",
+    lockedScore: 85,
     time: "5m ago",
     status: "pending",
-    unread: true,
+    unread: true
   },
   {
-    id: "notif-2",
-    type: "pact",
-    sender: PROFILES[1],
-    time: "20m ago",
+    id: "notif-m-2",
+    type: "direct_pact",
+    sender: {
+      id: "notif-user-m2",
+      name: "Dante Reyes",
+      age: 25,
+      gender: "Man",
+      location: "Austin, TX",
+      occupation: "Hardware Hacker",
+      photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+      interests: ["Hardware Hacking", "Robotics", "Bouldering"]
+    },
+    time: "22m ago",
     status: "pending",
-    unread: true,
+    unread: true
   },
   {
-    id: "notif-3",
+    id: "notif-m-3",
     type: "superpact",
-    sender: PROFILES[2],
+    sender: {
+      id: "notif-user-m3",
+      name: "Xavier Reed",
+      age: 23,
+      gender: "Man",
+      location: "San Francisco, CA",
+      occupation: "Analog Synth Tech",
+      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+      interests: ["Modular Synthesizers", "Electric Guitar", "Coffee Brewing"]
+    },
     gameType: "number_duel",
     gameTitle: "Number Duel (1 to 100)",
     lockedScore: 4,
     time: "1h ago",
     status: "pending",
-    unread: true,
+    unread: true
+  },
+  {
+    id: "notif-m-4",
+    type: "direct_pact",
+    sender: {
+      id: "notif-user-m4",
+      name: "Milo Sterling",
+      age: 24,
+      gender: "Man",
+      location: "Chicago, IL",
+      occupation: "Specialty Roaster",
+      photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+      interests: ["Coffee Brewing", "Vinyl", "Indie Rock"]
+    },
+    time: "3h ago",
+    status: "pending",
+    unread: true
   }
 ];
+
+// Helper to provide divergent pools strictly filtered by user's dating preference
+export function getDivergentPoolsForUser(user) {
+  const pref = user?.datingPreferenceGender || 'Everyone';
+
+  if (pref === 'Women') {
+    return {
+      deckProfiles: DECK_PROFILES_FEMALE,
+      sparksProfiles: SPARKS_PROFILES_FEMALE,
+      initialMatches: MATCH_PROFILES_FEMALE,
+      initialNotifications: NOTIF_PROFILES_FEMALE
+    };
+  }
+
+  if (pref === 'Men') {
+    return {
+      deckProfiles: DECK_PROFILES_MALE,
+      sparksProfiles: SPARKS_PROFILES_MALE,
+      initialMatches: MATCH_PROFILES_MALE,
+      initialNotifications: NOTIF_PROFILES_MALE
+    };
+  }
+
+  // 'Everyone': interleaved divergent pools
+  return {
+    deckProfiles: [...DECK_PROFILES_FEMALE, ...DECK_PROFILES_MALE],
+    sparksProfiles: [...SPARKS_PROFILES_FEMALE, ...SPARKS_PROFILES_MALE],
+    initialMatches: [...MATCH_PROFILES_FEMALE, ...MATCH_PROFILES_MALE],
+    initialNotifications: [...NOTIF_PROFILES_FEMALE, ...NOTIF_PROFILES_MALE]
+  };
+}
+
+// Legacy aliases for backward compatibility
+export const PROFILES = DECK_PROFILES_FEMALE;
+export const INITIAL_MATCHES = MATCH_PROFILES_FEMALE;
+export const INITIAL_NOTIFICATIONS = NOTIF_PROFILES_FEMALE;
 
 export const MEME_CARDS = [
   {
@@ -730,6 +2339,17 @@ export const MEME_VAULT = MEME_CARDS;
 
 export const COMMUNITY_FEED_ITEMS = [
   {
+    id: "feed-showpiece",
+    author: "PACT Community Canvas",
+    type: "Collaborative Board",
+    time: "Live Right Now",
+    likes: 342,
+    image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80",
+    caption: "Live community doodle board: neon line sketches, handwritten sticky notes, playful character drawings, and hearts contributed by active pairs.",
+    tags: ["#CommunityCanvas", "#LiveDoodle", "#NeonArt", "#ForgedInPlay"],
+    isShowpiece: true
+  },
+  {
     id: "feed-1",
     author: "Elena & You",
     type: "Shared Canvas",
@@ -741,17 +2361,17 @@ export const COMMUNITY_FEED_ITEMS = [
   },
   {
     id: "feed-2",
-    author: "Chloe & Marcus",
+    author: "Zoe & Marcus",
     type: "Arcade Showdown",
     time: "42 mins ago",
     likes: 89,
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-    caption: "Chloe guessed Number Duel on turn 3! Record time on the Austin leaderboard.",
+    caption: "Zoe guessed Number Duel on turn 3! Record time on the Austin leaderboard.",
     tags: ["#NumberDuel", "#BrainDuel", "#Arcade"]
   },
   {
     id: "feed-3",
-    author: "Tara & Dev",
+    author: "Aria & Dev",
     type: "Custom Sticker",
     time: "2 hours ago",
     likes: 67,
