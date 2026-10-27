@@ -1,10 +1,22 @@
 # ⚡ PACT — Make Connection an Experience
 
 > **Affecio Hacks ’26 Official Submission**  
+> **Team Name:** Ultra Instinct  
 > **Theme:** Dating & Social Discovery  
 > **Challenge:** Problem Statement #6 — *Make Connection an Experience*  
 > **Repository:** [PACT](https://github.com/anantbaid1108-sys/PACT)  
-> **Live Demo:** [Add Your Vercel URL Here]  
+> **Live Demo:** [Add Your Live Vercel Link Here]  
+
+---
+
+## 👥 Team Ultra Instinct
+
+| Name | Role | Responsibilities |
+| :--- | :--- | :--- |
+| **Abhinav Shavaran (C)** | Team Lead & Product Architect | Core system architecture, discovery algorithms, state coordination |
+| **Anant Baid** | Frontend & Game Systems Engineer | Interactive mini-game arena, HTML5 canvas studio, onboarding pipeline |
+| **Trisha Ghosh** | UI/UX & Conversational AI Lead | "Cupid AI" Wingman engine, theme aesthetics, chatroom micro-interactions |
+| **Shaurya Kumar Shaw** | Integration & QA Engineer | User pool data architecture, session persistence, Vercel CI/CD deployment |
 
 ---
 
@@ -12,7 +24,7 @@
 
 Modern dating platforms have reduced human connection to an inventory catalog:
 1. **Superficial Snap Judgments:** Decisions rely almost entirely on static photos rather than personality, humor, or real-time dynamics.
-2. **Swipe Fatigue & Ghosting:** Endless mindless scrolling without engaging interaction creates conversational burnout.
+2. **Swipe Fatigue & Ghosting:** Endless mindless scrolling without interactive engagement breeds conversational burnout.
 3. **The "Dead Opener" Dilemma:** Matches rot in chat queues because dry *"Hey"* or *"What's up"* messages fail to spark authentic banter.
 
 ### The Pact Solution
@@ -57,8 +69,8 @@ Integrated directly above the chat message bar, an autonomous dating assistant p
 
 ## 🛠️ Tech Stack
 
-* **Frontend Framework:** React (Vite) / Next.js (JavaScript / JSX)
-* **Styling & Design System:** Tailwind CSS (Dark tactical aesthetic, custom glassmorphism, mobile/desktop responsive)
+* **Frontend Framework:** React (Vite) (JavaScript / JSX)
+* **Styling & Design System:** Tailwind CSS (Dark tactical aesthetic, custom glassmorphism, responsive layout)
 * **Animations & Micro-Interactions:** Framer Motion, Canvas Confetti
 * **Graphics & Canvas:** HTML5 Canvas API (High-precision stroke rendering & sticker export)
 * **Icons:** Lucide React
