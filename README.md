@@ -37,7 +37,7 @@ Instead of asking *"Do I like their photos?"*, Pact prompts users to ask *"Do we
 ## ✨ System Architecture & Core Features
 
 ### 1. Multi-Tier Social Discovery Engine
-* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient floating balloon and bee backdrop.
+* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient soft-pink canvas with drifting bees and balloons. Built with responsive viewport adaptation: mobile features a floating quick SUPERPACT trigger with full-action controls at the scroll bottom, while tablet mode optimizes dimensions into an all-in-one non-scrolling card view.
 * **Daily Sparks (24-Hour Cycle):** 5 curated profiles separate from the swiper pool, refreshed every 24 hours via a persistent live countdown timer. Features chemistry resonance scores and trait alignment badges over an ambient fire-and-ember backdrop.
 * **Vibe Feed (Community Canvas):** A showcase feed featuring user-submitted shared doodles, custom stickers, and interactive invitations to join the shared art board.
 * **Notification Hub:** Async match inbox managing direct Pacts and incoming `SUPERPACT` challenges with one-click `[✓ Accept]` and `[✕ Decline]` workflows.
