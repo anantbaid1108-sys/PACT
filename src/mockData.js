@@ -2337,6 +2337,55 @@ export const MEME_CARDS = [
 
 export const MEME_VAULT = MEME_CARDS;
 
+export const POST_GAME_MEMES = {
+  victory: {
+    id: "meme-victory",
+    type: "meme",
+    title: "YOU WON... BUT AT WHAT COST?",
+    text: "YOU WON... BUT AT WHAT COST?",
+    caption: "Legend says winning on a dating app leads to being left on read forever...",
+    subtext: "Legend says winning on a dating app leads to being left on read forever...",
+    imageUrl: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
+    memeUrl: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
+    fallbackColor: "from-purple-900/60 to-slate-900"
+  },
+  defeat: {
+    id: "meme-defeat",
+    type: "meme",
+    title: "PERSONALLY, I WOULDN'T TAKE THAT LEVEL OF DISRESPECT",
+    text: "PERSONALLY, I WOULDN'T TAKE THAT LEVEL OF DISRESPECT",
+    caption: "Demand an immediate rematch or send a cheeky text to salvage your dignity!",
+    subtext: "Demand an immediate rematch or send a cheeky text to salvage your dignity!",
+    imageUrl: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=600&q=80",
+    memeUrl: "https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=600&q=80",
+    fallbackColor: "from-rose-900/60 to-slate-900"
+  },
+  opponentTaunt: {
+    id: "meme-opp-taunt",
+    type: "meme",
+    sender: "partner",
+    title: "I WOULDN'T HAVE LOST THIS BAD 😭💀",
+    text: "I WOULDN'T HAVE LOST THIS BAD 😭💀",
+    caption: "Maybe try guessing with your eyes open next round?",
+    subtext: "Maybe try guessing with your eyes open next round?",
+    imageUrl: "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?auto=format&fit=crop&w=600&q=80",
+    memeUrl: "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?auto=format&fit=crop&w=600&q=80",
+    fallbackColor: "from-red-900/60 to-slate-900"
+  },
+  opponentRealityCheck: {
+    id: "meme-opp-reality-check",
+    type: "meme",
+    sender: "partner",
+    title: "HOW PEOPLE FEEL AFTER WINNING BY A HUNCH 🗿",
+    text: "HOW PEOPLE FEEL AFTER WINNING BY A HUNCH 🗿",
+    caption: "Zero logic, 100% luck, but take your trophy.",
+    subtext: "Zero logic, 100% luck, but take your trophy.",
+    imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+    memeUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+    fallbackColor: "from-amber-900/60 to-slate-900"
+  }
+};
+
 export const COMMUNITY_FEED_ITEMS = [
   {
     id: "feed-showpiece",

@@ -28,6 +28,8 @@ import {
 import confetti from 'canvas-confetti';
 import DoodleDuel from './DoodleDuel';
 import TwentyQuestions from './TwentyQuestions';
+import PlayfulBanterDrawer from './PlayfulBanterDrawer';
+import { POST_GAME_MEMES } from '../mockData';
 
 // =========================================================================
 // 1. EXPANDED 33+ CHARACTER DATASET FOR UNLIMITED AKINATOR DEDUCTION
@@ -1145,27 +1147,20 @@ export default function GameModal({
   };
 
   // =========================================================================
-  // 7. BANTER MEMES & POINTS SYSTEM EXPORT
+  // 7. BANTER MEMES & POINTS SYSTEM EXPORT (Playful Banter Drawer)
   // =========================================================================
+  const [banterDrawerState, setBanterDrawerState] = useState({
+    isOpen: false,
+    isWinner: true,
+    gameTitle: 'Mini-Game Duel'
+  });
+
   const handleExportGameBanter = (isWinner, gameTitle) => {
-    if (!onExportToChat) return;
-    if (isWinner) {
-      onExportToChat({
-        type: 'meme',
-        memeUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
-        title: 'YOU WON... BUT AT WHAT COST?',
-        caption: `Won the ${gameTitle} duel against ${partnerName}! (Legend says winning leads to being left on read...)`
-      });
-    } else {
-      onExportToChat({
-        type: 'meme',
-        memeUrl: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=600&q=80',
-        title: "PERSONALLY, I WOULDN'T TAKE THAT LEVEL OF DISRESPECT.",
-        caption: `Suffered an L in ${gameTitle}. Demanding an immediate rematch!`
-      });
-    }
-    confetti({ particleCount: 70, spread: 70, origin: { y: 0.6 } });
-    alert("Post-game banter meme injected into chat conversation!");
+    setBanterDrawerState({
+      isOpen: true,
+      isWinner,
+      gameTitle
+    });
   };
 
   // Arena Games Tab Navigation
@@ -2152,6 +2147,25 @@ export default function GameModal({
 
         </div>
       </div>
+
+      {/* Playful Banter Drawer */}
+      <PlayfulBanterDrawer
+        isOpen={banterDrawerState.isOpen}
+        onClose={() => setBanterDrawerState(prev => ({ ...prev, isOpen: false }))}
+        isWinner={banterDrawerState.isWinner}
+        partnerName={partnerName}
+        gameTitle={banterDrawerState.gameTitle}
+        onSendBanter={(meme) => {
+          if (onExportToChat) {
+            onExportToChat({
+              ...meme,
+              partner,
+              sender: 'user',
+              gameTitle: banterDrawerState.gameTitle
+            });
+          }
+        }}
+      />
     </div>
   );
 }

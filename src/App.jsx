@@ -17,7 +17,8 @@ import {
   PROFILES, 
   INITIAL_MATCHES, 
   INITIAL_CHAT_MESSAGES,
-  INITIAL_NOTIFICATIONS 
+  INITIAL_NOTIFICATIONS,
+  POST_GAME_MEMES
 } from './mockData';
 import confetti from 'canvas-confetti';
 
@@ -241,18 +242,28 @@ export default function App() {
   };
 
   const handleExportGameToChat = (payload) => {
-    const targetMatchId = activeMatchId || (matches[0] && matches[0].id);
+    let targetMatchId = activeMatchId;
+    if (!targetMatchId && payload?.partner) {
+      const foundMatch = matches.find(m => m.profile?.name === payload.partner?.name || m.profile?.id === payload.partner?.id);
+      if (foundMatch) targetMatchId = foundMatch.id;
+    }
+    if (!targetMatchId && matches[0]) {
+      targetMatchId = matches[0].id;
+    }
     if (!targetMatchId) return;
 
     const message = {
       id: `m-export-${Date.now()}`,
-      sender: 'me',
-      type: payload.type || 'sticker',
+      sender: payload.sender || 'user',
+      type: payload.type || 'meme',
       stickerUrl: payload.stickerUrl,
-      memeUrl: payload.memeUrl,
-      title: payload.title,
-      caption: payload.caption,
-      text: payload.caption || 'Shared game achievement exported to chat!',
+      imageUrl: payload.imageUrl || payload.memeUrl,
+      memeUrl: payload.imageUrl || payload.memeUrl,
+      text: payload.text || payload.title || 'Shared game achievement exported to chat!',
+      title: payload.title || payload.text,
+      subtext: payload.subtext || payload.caption || '',
+      caption: payload.caption || payload.subtext,
+      fallbackColor: payload.fallbackColor || (payload.isWinner ? 'from-purple-900/60 to-slate-900' : 'from-rose-900/60 to-slate-900'),
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
@@ -260,6 +271,34 @@ export default function App() {
       ...prev,
       [targetMatchId]: [...(prev[targetMatchId] || []), message]
     }));
+
+    // Reciprocal opponent banter reaction (dispatched 2s later)
+    if (payload.type === 'meme' && payload.isWinner !== undefined) {
+      setTimeout(() => {
+        const oppData = payload.isWinner
+          ? POST_GAME_MEMES.opponentRealityCheck
+          : POST_GAME_MEMES.opponentTaunt;
+
+        const oppReply = {
+          id: `m-opp-${Date.now()}`,
+          sender: 'partner',
+          type: 'meme',
+          text: oppData.text,
+          title: oppData.title,
+          subtext: oppData.subtext,
+          caption: oppData.caption,
+          imageUrl: oppData.imageUrl,
+          memeUrl: oppData.imageUrl,
+          fallbackColor: oppData.fallbackColor,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        setChatMessages(prev => ({
+          ...prev,
+          [targetMatchId]: [...(prev[targetMatchId] || []), oppReply]
+        }));
+      }, 2000);
+    }
   };
 
   // If no persistent user session or onboarding incomplete, render Auth / Onboarding

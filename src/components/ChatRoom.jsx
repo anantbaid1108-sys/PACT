@@ -26,6 +26,48 @@ import {
 } from 'lucide-react';
 import { MEME_VAULT } from '../mockData';
 
+function MemeBubble({ msg, isMe }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const imageUrl = msg.imageUrl || msg.memeUrl;
+  const titleText = msg.text || msg.title || 'Meme Reaction';
+  const subText = msg.subtext || msg.caption || '';
+  const fallbackColor = msg.fallbackColor || (isMe ? 'from-purple-900/60 to-slate-900' : 'from-red-900/60 to-slate-900');
+
+  return (
+    <div className={`rounded-2xl overflow-hidden shadow-lg max-w-xs border text-left ${
+      isMe ? 'bg-slate-900 border-rose-500/30' : 'bg-slate-900 border-purple-500/30'
+    }`}>
+      {!imgFailed && imageUrl ? (
+        <img 
+          src={imageUrl} 
+          alt={titleText} 
+          className="w-full max-h-56 object-cover border-b border-slate-700/60" 
+          onError={() => setImgFailed(true)} 
+          loading="lazy"
+        />
+      ) : (
+        <div className={`w-full h-44 rounded-t-xl bg-gradient-to-br ${fallbackColor} border-b border-purple-500/30 flex flex-col items-center justify-center p-4 text-center`}>
+          <span className="text-3xl mb-1">🎭</span>
+          <p className="font-bold text-white text-sm uppercase tracking-wide">{titleText}</p>
+          <p className="text-xs text-slate-300 mt-1">{subText}</p>
+        </div>
+      )}
+      <div className="p-3 bg-slate-950/90">
+        <span className={`text-[10px] font-bold uppercase tracking-wider block ${
+          isMe ? 'text-rose-400' : 'text-purple-400'
+        }`}>
+          {titleText}
+        </span>
+        {subText && (
+          <p className="text-xs text-slate-300 mt-1 font-medium leading-snug">
+            {subText}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function ChatRoom({ 
   match, 
   messages = [], 
@@ -174,11 +216,15 @@ export default function ChatRoom({
   const handleSendMeme = (meme) => {
     onSendMessage({
       id: `m-${Date.now()}`,
-      sender: 'me',
+      sender: 'user',
       type: 'meme',
+      imageUrl: meme.url,
       memeUrl: meme.url,
       caption: meme.caption,
+      subtext: meme.caption,
       title: meme.title,
+      text: meme.title,
+      fallbackColor: 'from-purple-900/60 to-slate-900',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     });
     setMemeVaultOpen(false);
@@ -493,7 +539,7 @@ export default function ChatRoom({
         {/* Messages List with Upgraded Bubble Styling */}
         <div className="space-y-3.5 relative z-10">
           {messages.map((msg) => {
-            const isMe = msg.sender === 'me';
+            const isMe = msg.sender === 'me' || msg.sender === 'user';
             return (
               <div 
                 key={msg.id}
@@ -530,15 +576,9 @@ export default function ChatRoom({
                   </div>
                 )}
 
-                {/* Meme Message */}
+                {/* Meme Message with Failover Boundary */}
                 {msg.type === 'meme' && (
-                  <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-md max-w-xs">
-                    <img src={msg.memeUrl} alt={msg.title} className="w-full h-44 object-cover" />
-                    <div className="p-3 text-left">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-rose-500 block">{msg.title}</span>
-                      <p className="text-xs text-slate-700 mt-0.5 font-medium">{msg.caption}</p>
-                    </div>
-                  </div>
+                  <MemeBubble msg={msg} isMe={isMe} />
                 )}
 
                 {/* Custom Sticker Message */}

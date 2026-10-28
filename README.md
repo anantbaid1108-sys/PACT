@@ -57,7 +57,11 @@ Integrated directly above the chat message bar, an autonomous dating assistant p
 * **Micro Reflex Tap Race:** Millisecond-precision reaction showdown with randomized light gates.
 * **Collaborative Canvas 2.0:** Rich digital studio with a 12-color palette, stroke controls, highlighter, eraser, and an instant *"Export as Chat Sticker"* pipeline.
 * **Physics Spin the Bottle:** Realistic decelerating glass bottle engine prompting targeted *"Spill the Truth"* or *"Situation Calls"* dilemmas.
-* **Post-Game Banter Engine:** Automatically generates contextual winner (*"You won... but at what cost?"*) and loser (*"I wouldn't have taken that L"*) meme cards that can be injected directly into the chat stream.
+* **Post-Game Banter Engine:** Bi-directional meme delivery system with built-in asset failover. After competitive matches, players and AI matches exchange contextual banter cards into the chat stream:
+  * *Victory Card:* "You won... but at what cost?"
+  * *Defeat Card:* "Personally, I wouldn't take that level of disrespect"
+  * *Opponent Taunt (on user loss):* "I wouldn't have lost this bad 😭💀"
+  * *Opponent Reality-Check (on user win):* "How people feel after winning by a hunch 🗿"
 
 ### 4. Comprehensive Onboarding & Personalization
 * **Strict Dating Filters:** Strict gender preference and dynamic dual-thumb age range matching (18–80).

@@ -18,6 +18,8 @@ import {
   Award
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import PlayfulBanterDrawer from './PlayfulBanterDrawer';
+import { POST_GAME_MEMES } from '../mockData';
 
 const SECRET_WORDS_POOL = [
   { word: "Cat with sunglasses", hints: ["Animal with shades", "Cool feline", "4 legs + dark glasses"] },
@@ -49,6 +51,7 @@ export default function DoodleDuel({
   onExportToChat 
 }) {
   const partnerName = partner?.name || 'Partner';
+  const [banterDrawerOpen, setBanterDrawerOpen] = useState(false);
   
   // Game Flow States: 'lobby' | 'round1' | 'transition' | 'round2' | 'finished'
   const [gameState, setGameState] = useState('round1');
@@ -469,24 +472,7 @@ export default function DoodleDuel({
   };
 
   const handleExportBanterMeme = (isWinner) => {
-    if (!onExportToChat) return;
-    if (isWinner) {
-      onExportToChat({
-        type: 'meme',
-        memeUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
-        title: 'YOU WON... BUT AT WHAT COST?',
-        caption: `Legend says winning ${scores.user} to ${scores.partner} on a dating app leads to being left on read forever...`
-      });
-    } else {
-      onExportToChat({
-        type: 'meme',
-        memeUrl: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=600&q=80',
-        title: "PERSONALLY, I WOULDN'T TAKE THAT LEVEL OF DISRESPECT.",
-        caption: `Demanding a rematch to salvage dignity after that Doodle Duel showdown!`
-      });
-    }
-    confetti({ particleCount: 70, spread: 70, origin: { y: 0.6 } });
-    alert("Banter meme dispatched to your chat thread!");
+    setBanterDrawerOpen(true);
   };
 
   const handleRestartGame = () => {
@@ -862,6 +848,25 @@ export default function DoodleDuel({
           </div>
         </div>
       )}
+
+      {/* Playful Banter Drawer */}
+      <PlayfulBanterDrawer
+        isOpen={banterDrawerOpen}
+        onClose={() => setBanterDrawerOpen(false)}
+        isWinner={isUserWinner}
+        partnerName={partnerName}
+        gameTitle="Doodle Duel"
+        onSendBanter={(meme) => {
+          if (onExportToChat) {
+            onExportToChat({
+              ...meme,
+              partner,
+              sender: 'user',
+              gameTitle: 'Doodle Duel'
+            });
+          }
+        }}
+      />
     </div>
   );
 }

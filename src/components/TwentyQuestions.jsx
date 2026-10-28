@@ -13,6 +13,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import PlayfulBanterDrawer from './PlayfulBanterDrawer';
+import { POST_GAME_MEMES } from '../mockData';
 
 const CELEBRITY_SECRET_POOL = [
   { name: "Michael Jackson", hint: "Music Legend / King of Pop", category: "Music" },
@@ -31,6 +33,7 @@ export default function TwentyQuestions({
   onExportToChat 
 }) {
   const partnerName = partner?.name || 'Partner';
+  const [banterDrawerOpen, setBanterDrawerOpen] = useState(false);
 
   // Secret identities:
   // Secret A is assigned to You, but displayed ONLY to Partner.
@@ -198,24 +201,7 @@ export default function TwentyQuestions({
   };
 
   const handleExportBanterMeme = (isWinner) => {
-    if (!onExportToChat) return;
-    if (isWinner) {
-      onExportToChat({
-        type: 'meme',
-        memeUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
-        title: 'YOU WON... BUT AT WHAT COST?',
-        caption: `Cracked my 20 Questions identity "${solvedWord}" with ${questionTokens} tokens left! Legend says winning leads to being left on read...`
-      });
-    } else {
-      onExportToChat({
-        type: 'meme',
-        memeUrl: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&w=600&q=80',
-        title: "PERSONALLY, I WOULDN'T TAKE THAT LEVEL OF DISRESPECT.",
-        caption: `${partnerName} deduced the identity first! Rematch is non-negotiable.`
-      });
-    }
-    confetti({ particleCount: 70, spread: 70, origin: { y: 0.6 } });
-    alert("Banter meme card dispatched to your chat thread!");
+    setBanterDrawerOpen(true);
   };
 
   const isUserWinner = winner === 'You';
@@ -485,6 +471,25 @@ export default function TwentyQuestions({
           </div>
         ))}
       </div>
+
+      {/* Playful Banter Drawer */}
+      <PlayfulBanterDrawer
+        isOpen={banterDrawerOpen}
+        onClose={() => setBanterDrawerOpen(false)}
+        isWinner={isUserWinner}
+        partnerName={partnerName}
+        gameTitle="20 Questions Co-Op"
+        onSendBanter={(meme) => {
+          if (onExportToChat) {
+            onExportToChat({
+              ...meme,
+              partner,
+              sender: 'user',
+              gameTitle: '20 Questions Co-Op'
+            });
+          }
+        }}
+      />
     </div>
   );
 }
