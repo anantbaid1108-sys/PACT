@@ -37,7 +37,10 @@ Instead of asking *"Do I like their photos?"*, Pact prompts users to ask *"Do we
 ## ✨ System Architecture & Core Features
 
 ### 1. Multi-Tier Social Discovery Engine
-* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient soft-pink canvas with drifting bees and balloons. Built with responsive viewport adaptation: mobile features a floating quick SUPERPACT trigger with full-action controls at the scroll bottom, while tablet mode optimizes dimensions into an all-in-one non-scrolling card view.
+* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient soft-pink background with floating decorative bees (🐝) and balloons (🎈). Built with responsive viewport adaptation:
+  * **Mobile:** Floating quick SUPERPACT trigger at the bottom-right for instant engagement, with the full action bar (`[✕]`, `[⚡ SUPERPACT]`, `[❤️]`) positioned naturally at the bottom of the scrollable profile.
+  * **Tablet:** Optimized viewport layout displaying profile details and pinned action controls in an all-in-one frame with no vertical scrolling required.
+  * **Desktop:** Full-screen ambient swiper cards with fluid swipe gesture handling.
 * **Daily Sparks (24-Hour Cycle):** 5 curated profiles separate from the swiper pool, refreshed every 24 hours via a persistent live countdown timer. Features chemistry resonance scores and trait alignment badges over an ambient fire-and-ember backdrop.
 * **Vibe Feed (Community Canvas):** A showcase feed featuring user-submitted shared doodles, custom stickers, and interactive invitations to join the shared art board.
 * **Notification Hub:** Async match inbox managing direct Pacts and incoming `SUPERPACT` challenges with one-click `[✓ Accept]` and `[✕ Decline]` workflows.
@@ -57,11 +60,11 @@ Integrated directly above the chat message bar, an autonomous dating assistant p
 * **Micro Reflex Tap Race:** Millisecond-precision reaction showdown with randomized light gates.
 * **Collaborative Canvas 2.0:** Rich digital studio with a 12-color palette, stroke controls, highlighter, eraser, and an instant *"Export as Chat Sticker"* pipeline.
 * **Physics Spin the Bottle:** Realistic decelerating glass bottle engine prompting targeted *"Spill the Truth"* or *"Situation Calls"* dilemmas.
-* **Post-Game Banter Engine:** Bi-directional meme delivery system with built-in asset failover. After competitive matches, players and AI matches exchange contextual banter cards into the chat stream:
-  * *Victory Card:* "You won... but at what cost?"
-  * *Defeat Card:* "Personally, I wouldn't take that level of disrespect"
-  * *Opponent Taunt (on user loss):* "I wouldn't have lost this bad 😭💀"
-  * *Opponent Reality-Check (on user win):* "How people feel after winning by a hunch 🗿"
+* **Post-Game Banter Engine:** Bi-directional post-match meme exchange engine with resilient CSS/SVG asset fallbacks. Allows players and opponent matches to trade contextual outcome memes directly into the chat stream:
+  * **User Wins:** *"You won... but at what cost?"*
+  * **User Loses:** *"Personally, I wouldn't take that level of disrespect"*
+  * **Opponent Wins:** *"How people feel after winning by a hunch 🗿"*
+  * **Opponent Loses:** *"I wouldn't have lost this bad 😭💀"*
 
 ### 4. Comprehensive Onboarding & Personalization
 * **Strict Dating Filters:** Strict gender preference and dynamic dual-thumb age range matching (18–80).
@@ -74,7 +77,7 @@ Integrated directly above the chat message bar, an autonomous dating assistant p
 ## 🛠️ Tech Stack
 
 * **Frontend Framework:** React (Vite) (JavaScript / JSX)
-* **Styling & Design System:** Tailwind CSS (Dark tactical aesthetic, custom glassmorphism, responsive layout)
+* **Styling & Design System:** Tailwind CSS (Romantic pastel deck & dark tactical game UI, custom glassmorphism, responsive layout)
 * **Animations & Micro-Interactions:** Framer Motion, Canvas Confetti
 * **Graphics & Canvas:** HTML5 Canvas API (High-precision stroke rendering & sticker export)
 * **Icons:** Lucide React
@@ -105,3 +108,14 @@ Integrated directly above the chat message bar, an autonomous dating assistant p
    ```bash
    npm run dev
    ```
+
+4. **Access the application:**
+   Navigate to `http://localhost:5173` in your browser.
+
+---
+
+## 📜 Compliance, Safety & Legal
+
+* Developed during **Affecio Hacks ’26** (October 21–28, 2026).
+* Built strictly adhering to open-source guidelines without uncredited proprietary assets.
+* Standalone legal compliance routes (`/privacy` and `/terms`) detail ephemeral canvas storage, zero credential exposure, location masking, and 18+ community safety guidelines.

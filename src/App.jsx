@@ -276,8 +276,8 @@ export default function App() {
     if (payload.type === 'meme' && payload.isWinner !== undefined) {
       setTimeout(() => {
         const oppData = payload.isWinner
-          ? POST_GAME_MEMES.opponentRealityCheck
-          : POST_GAME_MEMES.opponentTaunt;
+          ? POST_GAME_MEMES.opponentCoping
+          : POST_GAME_MEMES.opponentFlex;
 
         const oppReply = {
           id: `m-opp-${Date.now()}`,

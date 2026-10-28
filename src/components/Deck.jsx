@@ -155,12 +155,12 @@ export default function Deck({
   const candidateTraits = currentProfile?.threeWords || currentProfile?.selfTraits || [];
 
   return (
-    <div className="relative w-full min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center p-2 sm:p-4 md:p-6 overflow-x-hidden bg-gradient-to-b from-[#2B0E1E] via-[#1A0A14] to-[#12070D]">
-      {/* 1. Playful Pink Canvas with Drifting Bees (🐝) & Balloons (🎈) at opacity-20 */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="relative w-full min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center p-2 sm:p-4 md:p-6 overflow-x-hidden bg-gradient-to-b from-[#FFF0F5] via-[#FFE4E6] to-[#FDF2F8]">
+      {/* 1. Romantic Soft-Pink Canvas with Drifting Bees (🐝) & Balloons (🎈) (STRICTLY VISUAL - NO AUDIO) */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
         {/* Soft-Pink Canvas Radial Ambient Glow */}
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[550px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-500/15 via-rose-500/10 to-transparent blur-3xl opacity-90" />
-        <div className="absolute -bottom-32 right-1/4 w-[750px] h-[550px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-rose-500/15 via-pink-600/10 to-transparent blur-3xl opacity-80" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[550px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300/35 via-rose-200/25 to-transparent blur-3xl opacity-80" />
+        <div className="absolute -bottom-32 right-1/4 w-[750px] h-[550px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-rose-300/35 via-pink-200/25 to-transparent blur-3xl opacity-80" />
 
         {[
           { icon: '🐝', x: '8%', delay: 0, duration: 18, size: 'text-2xl' },
@@ -176,13 +176,13 @@ export default function Deck({
         ].map((item, idx) => (
           <motion.div
             key={`spring-ambient-${idx}`}
-            className={`absolute select-none pointer-events-none opacity-20 filter blur-[0.2px] ${item.size}`}
+            className={`absolute select-none pointer-events-none opacity-25 filter blur-[0.2px] z-0 ${item.size}`}
             style={{ left: item.x, bottom: '-40px' }}
             animate={{
               y: [0, -1100],
               x: [(idx % 2 === 0 ? 1 : -1) * 35, (idx % 2 === 0 ? -1 : 1) * 35],
               rotate: [0, idx % 2 === 0 ? 25 : -25, 0],
-              opacity: [0, 0.20, 0.20, 0],
+              opacity: [0, 0.25, 0.25, 0],
             }}
             transition={{
               duration: item.duration,
