@@ -19,7 +19,8 @@ import {
   Save,
   Briefcase,
   GraduationCap,
-  MapPin
+  MapPin,
+  LogOut
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CATEGORIZED_INTERESTS, GLOBAL_ARTISTS } from '../mockData';
@@ -37,7 +38,7 @@ const CONNECTION_GOALS = [
 
 const HABIT_OPTIONS = ["Never", "Occasionally", "Frequently"];
 
-export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser }) {
+export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser, onLogout }) {
   const [activeTab, setActiveTab] = useState('photos'); // 'photos' | 'identity' | 'dating' | 'interests'
   const [saveSuccessBanner, setSaveSuccessBanner] = useState(false);
 
@@ -191,7 +192,12 @@ export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser })
       onboardingComplete: true
     };
 
-    localStorage.setItem('pact_user', JSON.stringify(updatedUser));
+    try {
+      localStorage.setItem('pact_user', JSON.stringify(updatedUser));
+      localStorage.setItem('pact_user_profile', JSON.stringify(updatedUser));
+    } catch (e) {
+      console.error('Failed to save profile changes', e);
+    }
     onSaveUser(updatedUser);
 
     setSaveSuccessBanner(true);
@@ -256,12 +262,32 @@ export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser })
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                localStorage.removeItem('pact_user');
+                localStorage.removeItem('pact_user_profile');
+                localStorage.removeItem('pact_user_profile_v2');
+                if (onLogout) {
+                  onLogout();
+                } else {
+                  window.location.reload();
+                }
+              }}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-bold transition-all"
+              title="Reset session and test full onboarding wizard"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Reset Profile</span>
+            </button>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Tab Navigation */}
@@ -818,19 +844,36 @@ export default function EditProfileDrawer({ isOpen, onClose, user, onSaveUser })
 
         </div>
 
-        {/* Footer with Save Changes Button */}
-        <div className="p-4 sm:p-5 border-t border-white/10 bg-white/[0.02] flex items-center justify-between">
-          {saveSuccessBanner ? (
-            <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 animate-pulse">
-              <Check className="w-4 h-4" /> Changes saved to localStorage!
-            </span>
-          ) : (
-            <span className="text-[11px] text-slate-400">
-              Updates your profile instantly without reload.
-            </span>
-          )}
+        {/* Footer with Save Changes Button & Reset Demo */}
+        <div className="p-4 sm:p-5 border-t border-white/10 bg-white/[0.02] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+            {saveSuccessBanner ? (
+              <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 animate-pulse">
+                <Check className="w-4 h-4" /> Changes saved to localStorage!
+              </span>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  localStorage.removeItem('pact_user');
+                  localStorage.removeItem('pact_user_profile');
+                  localStorage.removeItem('pact_user_profile_v2');
+                  if (onLogout) {
+                    onLogout();
+                  } else {
+                    window.location.reload();
+                  }
+                }}
+                className="text-xs text-rose-400 hover:text-rose-300 underline font-semibold flex items-center gap-1 transition-colors"
+                title="Clears local profile session so judges can test full onboarding wizard from scratch"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Reset & Test Sign-In</span>
+              </button>
+            )}
+          </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
             <button
               type="button"
               onClick={onClose}

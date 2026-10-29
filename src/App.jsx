@@ -23,11 +23,16 @@ import {
 import confetti from 'canvas-confetti';
 
 export default function App() {
-  // 1. Persistent Auth via localStorage
+  // 1. Persistent Auth via localStorage (strictly null if no registered/onboarded profile on this device)
   const [user, setUser] = useState(() => {
     try {
-      const saved = localStorage.getItem('pact_user');
-      return saved ? JSON.parse(saved) : null;
+      const saved = localStorage.getItem('pact_user') || localStorage.getItem('pact_user_profile');
+      if (!saved) return null;
+      const parsed = JSON.parse(saved);
+      if (parsed && typeof parsed === 'object' && parsed.name && parsed.onboardingComplete) {
+        return parsed;
+      }
+      return null;
     } catch {
       return null;
     }
@@ -71,10 +76,32 @@ export default function App() {
     }, 4000);
   };
 
+  const handleLoginSuccess = (authenticatedUser) => {
+    const completeUser = {
+      ...authenticatedUser,
+      onboardingComplete: true
+    };
+    try {
+      localStorage.setItem('pact_user', JSON.stringify(completeUser));
+      localStorage.setItem('pact_user_profile', JSON.stringify(completeUser));
+    } catch (e) {
+      console.error('Failed to save user profile to localStorage', e);
+    }
+    setUser(completeUser);
+    setCurrentChannel('deck');
+  };
+
   const handleSignOut = () => {
-    localStorage.removeItem('pact_user');
+    try {
+      localStorage.removeItem('pact_user');
+      localStorage.removeItem('pact_user_profile');
+      localStorage.removeItem('pact_user_profile_v2');
+    } catch (e) {
+      console.error('Failed to remove user session', e);
+    }
     setUser(null);
     setActiveMatchId(null);
+    setIsEditProfileOpen(false);
   };
 
   // Deck Actions
@@ -303,7 +330,7 @@ export default function App() {
 
   // If no persistent user session or onboarding incomplete, render Auth / Onboarding
   if (!user || !user.onboardingComplete) {
-    return <AuthModal onLoginSuccess={(u) => setUser(u)} />;
+    return <AuthModal onLoginSuccess={handleLoginSuccess} />;
   }
 
   return (
@@ -489,6 +516,7 @@ export default function App() {
         onSaveUser={(updatedUser) => {
           setUser(updatedUser);
         }}
+        onLogout={handleSignOut}
       />
     </div>
   );

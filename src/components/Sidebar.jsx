@@ -133,6 +133,18 @@ export default function Sidebar({
                 <span>{currentUser.handle || '@user'}</span>
                 <span className="text-rose-400 font-bold">• Edit</span>
               </p>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSignOut();
+                }}
+                className="text-[10px] text-rose-400/90 hover:text-rose-300 underline font-medium flex items-center gap-1 mt-1 transition-colors"
+                title="Clears local profile session so you can test full onboarding wizard from scratch"
+              >
+                <LogOut className="w-2.5 h-2.5" />
+                <span>Reset & Test Sign-In</span>
+              </button>
             </div>
           </div>
 
@@ -270,7 +282,14 @@ export default function Sidebar({
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>18+ Verified Platform</span>
           </div>
-          <span className="font-mono text-slate-400">v2.0.0</span>
+          <button
+            type="button"
+            onClick={onSignOut}
+            className="text-[11px] text-rose-400/90 hover:text-rose-300 underline font-semibold transition-colors"
+            title="Reset profile session to test onboarding from scratch"
+          >
+            Reset Demo
+          </button>
         </div>
       </aside>
     </>

@@ -49,7 +49,7 @@ class Store {
     this.activeChannel = "deck"; // 'deck' | 'arcade' | 'feed' | 'daily3' | 'chat' | 'privacy' | 'terms'
     this.activeChatPartnerId = "user-elena";
     this.isProfileDrawerOpen = false;
-    this.isOnboardingOpen = !this.user.onboardingCompleted;
+    this.isOnboardingOpen = !this.user || !this.user.onboardingCompleted;
   }
 
   subscribe(event, callback) {
@@ -71,10 +71,10 @@ class Store {
 
   loadUser() {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_USER);
+      const saved = localStorage.getItem('pact_user') || localStorage.getItem('pact_user_profile') || localStorage.getItem(STORAGE_KEY_USER);
       if (saved) return JSON.parse(saved);
     } catch (e) {}
-    return { ...DEFAULT_USER };
+    return null;
   }
 
   saveUser(newUser) {

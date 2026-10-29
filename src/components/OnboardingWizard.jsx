@@ -358,7 +358,12 @@ export default function OnboardingWizard({ initialData, onComplete, onCancel }) 
       colors: ['#F59E0B', '#FF3366', '#D946EF', '#10B981']
     });
 
-    localStorage.setItem('pact_user', JSON.stringify(completeUser));
+    try {
+      localStorage.setItem('pact_user', JSON.stringify(completeUser));
+      localStorage.setItem('pact_user_profile', JSON.stringify(completeUser));
+    } catch (e) {
+      console.error('Failed to save profile', e);
+    }
     onComplete(completeUser);
   };
 

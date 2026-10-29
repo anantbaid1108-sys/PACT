@@ -18,9 +18,17 @@ import OnboardingWizard from './OnboardingWizard';
 import { CURRENT_USER } from '../mockData';
 
 export default function AuthModal({ onLoginSuccess }) {
-  const [mode, setMode] = useState('signin'); // 'signin' | 'signup' | 'onboarding'
-  const [email, setEmail] = useState('anant@pact.love');
-  const [password, setPassword] = useState('password123');
+  // On fresh device with no saved profile, default to 'signup' so new users/judges see onboarding first
+  const [mode, setMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pact_user') || localStorage.getItem('pact_user_profile');
+      return saved ? 'signin' : 'signup';
+    } catch {
+      return 'signup';
+    }
+  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
 
@@ -35,7 +43,7 @@ export default function AuthModal({ onLoginSuccess }) {
     }
 
     // Check localStorage
-    const saved = localStorage.getItem('pact_user');
+    const saved = localStorage.getItem('pact_user') || localStorage.getItem('pact_user_profile');
     let authenticatedUser = null;
     try {
       authenticatedUser = saved ? JSON.parse(saved) : null;
@@ -62,13 +70,18 @@ export default function AuthModal({ onLoginSuccess }) {
     }
 
     // If no existing user session found in localStorage, notify or launch onboarding
-    setError('No existing account found with this email. Click "Create Account" to build your profile, or use 1-Click Demo Login below.');
+    setError('No existing account found in this browser. Click "Create Account" above to build your profile, or use 1-Click Demo Login below.');
   };
 
   // Handle Create Account submission
   const handleCreateAccount = (e) => {
     e?.preventDefault();
     setError('');
+
+    if (!name.trim()) {
+      setError('Please enter your full name to begin profile creation.');
+      return;
+    }
 
     if (!email.trim() || !password.trim()) {
       setError('Please provide both your email and password.');
@@ -88,8 +101,14 @@ export default function AuthModal({ onLoginSuccess }) {
       colors: ['#F59E0B', '#FF3366', '#D946EF', '#10B981']
     });
 
-    localStorage.setItem('pact_user', JSON.stringify(CURRENT_USER));
-    onLoginSuccess(CURRENT_USER);
+    const demoUser = { ...CURRENT_USER, onboardingComplete: true };
+    try {
+      localStorage.setItem('pact_user', JSON.stringify(demoUser));
+      localStorage.setItem('pact_user_profile', JSON.stringify(demoUser));
+    } catch (e) {
+      console.error(e);
+    }
+    onLoginSuccess(demoUser);
   };
 
   // If in Onboarding Wizard flow
@@ -103,7 +122,7 @@ export default function AuthModal({ onLoginSuccess }) {
         onComplete={(newUser) => {
           onLoginSuccess(newUser);
         }}
-        onCancel={() => setMode('signin')}
+        onCancel={() => setMode('signup')}
       />
     );
   }
