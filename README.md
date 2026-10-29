@@ -37,10 +37,13 @@ Instead of asking *"Do I like their photos?"*, Pact prompts users to ask *"Do we
 ## ✨ System Architecture & Core Features
 
 ### 1. Multi-Tier Social Discovery Engine
-* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient soft-pink background with floating decorative bees (🐝) and balloons (🎈). Built with responsive viewport adaptation:
-  * **Mobile:** Floating quick SUPERPACT trigger at the bottom-right for instant engagement, with the full action bar (`[✕]`, `[⚡ SUPERPACT]`, `[❤️]`) positioned naturally at the bottom of the scrollable profile.
-  * **Tablet:** Optimized viewport layout displaying profile details and pinned action controls in an all-in-one frame with no vertical scrolling required.
-  * **Desktop:** Full-screen ambient swiper cards with fluid swipe gesture handling.
+* **Deck (The Swiper):** Full-screen card stack featuring 15 distinct profiles with multi-photo carousels and captions, lifestyle badges (drinking, smoking, faith), reciprocal 3-word traits, and interest tags against an ambient soft-pink background with floating decorative bees (🐝) and balloons (🎈).
+  * **Visual Palette:** Soft pastel pink ambient background (`#FFF0F5`) accented with gentle floating decorative bees (🐝) and pastel balloons (🎈).
+  * **Strictly Visual:** Pure visual ambient experience with zero audio tracks, background music (BGM), or sound toggles.
+  * **Responsive Viewport Layout:**
+    * **Mobile (<768px):** Floating quick `SUPERPACT` trigger button anchored at the bottom-right for instant engagement, with the full action bar (`[✕]`, `[⚡]`, `[❤️]`) positioned naturally at the bottom of the scrollable profile.
+    * **Tablet (768px–1024px):** Optimized all-in-one non-scrolling card frame with photos and details side-by-side and pinned bottom action controls.
+    * **Desktop (≥1024px):** Full-screen gesture-driven card swiper with fluid micro-interactions.
 * **Daily Sparks (24-Hour Cycle):** 5 curated profiles separate from the swiper pool, refreshed every 24 hours via a persistent live countdown timer. Features chemistry resonance scores and trait alignment badges over an ambient fire-and-ember backdrop.
 * **Vibe Feed (Community Canvas):** A showcase feed featuring user-submitted shared doodles, custom stickers, and interactive invitations to join the shared art board.
 * **Notification Hub:** Async match inbox managing direct Pacts and incoming `SUPERPACT` challenges with one-click `[✓ Accept]` and `[✕ Decline]` workflows.
@@ -60,13 +63,16 @@ Integrated directly above the chat message bar, an autonomous dating assistant p
 * **Micro Reflex Tap Race:** Millisecond-precision reaction showdown with randomized light gates.
 * **Collaborative Canvas 2.0:** Rich digital studio with a 12-color palette, stroke controls, highlighter, eraser, and an instant *"Export as Chat Sticker"* pipeline.
 * **Physics Spin the Bottle:** Realistic decelerating glass bottle engine prompting targeted *"Spill the Truth"* or *"Situation Calls"* dilemmas.
-* **Post-Game Banter Engine:** Bi-directional post-match meme exchange engine with resilient CSS/SVG asset fallbacks. Allows players and opponent matches to trade contextual outcome memes directly into the chat stream:
+* **Post-Game Banter Engine:** Bi-directional post-match meme exchange engine with resilient CSS/SVG asset fallbacks (`onError` boundary handler) ensuring meme cards never render broken images. Directly dispatches contextual outcome memes into the match chat:
   * **User Wins:** *"You won... but at what cost?"*
   * **User Loses:** *"Personally, I wouldn't take that level of disrespect"*
   * **Opponent Wins:** *"How people feel after winning by a hunch 🗿"*
   * **Opponent Loses:** *"I wouldn't have lost this bad 😭💀"*
 
-### 4. Comprehensive Onboarding & Personalization
+### 4. Client-Side Session Management & Onboarding Routing
+* **First-Time Session Routing:** App checks `localStorage` for `pact_user_profile` upon initial visit. First-time visitors and incognito sessions land directly on the multi-step Onboarding & Profile Setup flow instead of loading a hardcoded default profile.
+* **Session Persistence:** Completed user profiles persist locally across page refreshes and browser restarts.
+* **Judge / Demo Reset Workflow:** Added a quick reset/logout control in settings and the sidebar footer that purges local session storage and reloads the app back to the onboarding screen, enabling evaluators to test profile creation from scratch.
 * **Strict Dating Filters:** Strict gender preference and dynamic dual-thumb age range matching (18–80).
 * **Multi-Photo Studio:** Up to 6 photos with designated primary DP selection, caption editing, and reordering.
 * **100+ Categorized Interest Cloud:** Spanning Anime, Gaming, Music, Tech, Outdoors, and Creative Arts.
